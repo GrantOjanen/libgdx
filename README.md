@@ -1,3 +1,28 @@
+### Fork Goals
+These are the goals for this fork. I wont send pull requests for all of them. Each goal will have it's own banch, and all complete goal are in the master branch.
+- [ ] detect multiple keyboards separately (Android)
+- [X] get gamepad system Id (Ex: Android InputDevice Id)
+- [ ] Arial font is proprietary and should be replaced
+- [ ] remove jlayer (all my games will use Ogg)
+- [X] set mp3 on HTML5 to not required be default (SoundManager2)
+- [X] Change Mouse Cursor Image (Android 7+)
+- [ ] Capture Mouse Pointer (Android 8+)
+- [ ] Ability to get button clicks and precise motion events from separate mice at the same time. (Android)
+- [ ] Ability to distinguish between mice and touch events. (Android)
+- [ ] Change onPause to onStop to better support multi window mode (Android)
+- [X] add check for fullscreen (Android)
+- [X] Android gamepad vibrations
+- [ ] Maybe change some code to better anticipate hotpluggable touch screens (Android, JavaScript)
+- [ ] try out new audio engine for html: https://github.com/libgdx/libgdx/pull/5659
+- [ ] documentation for all third party licenses
+- [ ] Android be pure Java
+- [ ] javascript send Gdx.app.log to console.log()
+- [ ] get rid of isMobileDevice, OUYA mapping, xperia play mapping, ...
+- [ ] open/save files with Storage Access Framework (Android)
+
+### Canceled Fork Goals
+- get gamepad vendor id and product id
+
 ![logo](http://libgdx.badlogicgames.com/img/logo.png)
 
 [![Jenkins build status](https://libgdx.badlogicgames.com/jenkins/buildStatus/icon?job=libgdx&.png)](https://libgdx.badlogicgames.com/jenkins/job/libgdx/) (Jenkins)

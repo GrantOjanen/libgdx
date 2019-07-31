@@ -197,4 +197,9 @@ public class AndroidController implements Controller {
 	public boolean supportsVibrationAmplitude () {
 		return hasVibrator && Build.VERSION.SDK_INT >= 26 && vib.hasAmplitudeControl();
 	}
+
+	@Override
+	public long getSystemId () {
+		return deviceId;
+	}
 }

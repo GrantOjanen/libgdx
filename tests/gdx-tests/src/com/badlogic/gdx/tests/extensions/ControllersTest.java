@@ -102,6 +102,7 @@ public class ControllersTest extends GdxTest {
 		for (Controller controller : Controllers.getControllers()) {
 			print("#" + i + ": " + controller.getName());
 			print("#" + i++ + ", Has Vibrator: " + controller.hasVibrator() + ", Has Amplitude: " + controller.supportsVibrationAmplitude());
+			print("#" + i++ + ": System ID " + controller.getSystemId());
 		}
 		if (Controllers.getControllers().size == 0) print("No controllers attached");
 
@@ -118,6 +119,7 @@ public class ControllersTest extends GdxTest {
 				for (Controller c : Controllers.getControllers()) {
 					print("#" + i + ": " + c.getName());
 					print("#" + i++ + ", Has Vibrator: " + c.hasVibrator() + ", Has Amplitude: " + c.supportsVibrationAmplitude());
+					print("#" + i++ + ": System ID " + c.getSystemId());
 				}
 			}
 

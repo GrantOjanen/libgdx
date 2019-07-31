@@ -129,7 +129,7 @@ public class GwtController implements Controller {
 	public void removeListener(ControllerListener listener) {
 		this.listeners.removeValue(listener, true);
 	}
-	
+
 	public Array<ControllerListener> getListeners() {
 		return listeners;
 	}
@@ -150,5 +150,10 @@ public class GwtController implements Controller {
 	@Override
 	public boolean supportsVibrationAmplitude () {
 		return false;
+	}
+
+	@Override
+	public long getSystemId() {
+		return index;
 	}
 }

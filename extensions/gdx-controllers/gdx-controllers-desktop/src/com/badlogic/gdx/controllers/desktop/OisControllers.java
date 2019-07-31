@@ -257,6 +257,11 @@ public class OisControllers {
 		public boolean supportsVibrationAmplitude () {
 			return false;
 		}
+
+		@Override
+		public long getSystemId () {
+			return joystick.getPointer();
+		}
 	}
 
 	/** Returns the window handle from LWJGL needed by OIS. */

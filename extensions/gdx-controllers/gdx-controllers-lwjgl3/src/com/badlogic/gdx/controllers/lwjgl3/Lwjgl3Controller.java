@@ -97,7 +97,7 @@ public class Lwjgl3Controller implements Controller {
 	public void removeListener (ControllerListener listener) {
 		listeners.removeValue(listener, true);
 	}
-	
+
 	@Override
 	public boolean getButton (int buttonCode) {
 		if(buttonCode < 0 || buttonCode >= buttonState.length) {
@@ -179,5 +179,10 @@ public class Lwjgl3Controller implements Controller {
 	@Override
 	public boolean supportsVibrationAmplitude () {
 		return false;
+	}
+
+	@Override
+	public long getSystemId () {
+		return index;
 	}
 }

@@ -16,9 +16,11 @@
 
 package com.badlogic.gdx.backends.android;
 
+import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.EGLConfigChooser;
 import android.opengl.GLSurfaceView.Renderer;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
@@ -714,9 +716,9 @@ public class AndroidGraphics implements Graphics, Renderer {
 
 	@Override
 	public boolean isFullscreen () {
-		return true;
+		Activity activity = app.getActivity();
+		return activity == null || Build.VERSION.SDK_INT < 24 || !activity.isInMultiWindowMode();
 	}
-
 
 	@Override
 	public Cursor newCursor (Pixmap pixmap, int xHotspot, int yHotspot) {

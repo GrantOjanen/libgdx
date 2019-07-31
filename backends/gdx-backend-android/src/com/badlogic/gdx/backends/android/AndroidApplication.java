@@ -529,7 +529,7 @@ public class AndroidApplication extends Activity implements AndroidApplicationBa
 	}
 
 	@Override
-	public Activity getActivity () {
+	public Activity getActivity() {
 		return this;
 	}
 }

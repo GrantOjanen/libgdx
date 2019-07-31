@@ -89,7 +89,7 @@ public interface AndroidApplicationBase extends Application {
 	 * @return The {@link Handler} object created by the application */
 	Handler getHandler ();
 
-	/** Returns the current Android Activity
-	 * @return The current Android {@link Activity} */
+	/** Returns the Activity associated with the application
+	 * @return The {@link Activity} associated with the application */
 	Activity getActivity ();
 }

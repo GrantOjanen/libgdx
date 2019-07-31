@@ -615,4 +615,13 @@ public class IOSGraphics extends NSObject implements Graphics, GLKViewDelegate, 
 			super(virtualX, virtualY, name);
 		}
 	}
+
+	@Override
+	public Cursor newAndroidCursor (String drawableName, float xHotspot, float yHotspot) {
+		return null;
+	}
+
+	@Override
+	public void setAndroidCursor (Cursor cursor) {
+	}
 }

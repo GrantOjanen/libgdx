@@ -16,12 +16,6 @@
 
 package com.badlogic.gdx.backends.android;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
-import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -30,7 +24,6 @@ import android.os.Debug;
 import android.os.Handler;
 import android.os.Looper;
 import android.service.dreams.DreamService;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -44,7 +37,6 @@ import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.LifecycleListener;
 import com.badlogic.gdx.Net;
 import com.badlogic.gdx.Preferences;
@@ -53,6 +45,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Clipboard;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.badlogic.gdx.utils.SnapshotArray;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /** An implementation of the {@link Application} interface for Android. Create an {@link Activity} that derives from this class. In
  * the Activity#onCreate(Bundle) method call the {@link #initialize(ApplicationListener)} method specifying the configuration for

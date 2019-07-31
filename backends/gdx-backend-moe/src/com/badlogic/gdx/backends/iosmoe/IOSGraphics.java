@@ -16,11 +16,6 @@
 
 package com.badlogic.gdx.backends.iosmoe;
 
-import org.moe.natj.general.NatJ;
-import org.moe.natj.general.Pointer;
-import org.moe.natj.general.ann.ByValue;
-import org.moe.natj.objc.ann.Selector;
-
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
@@ -35,6 +30,11 @@ import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.glutils.GLVersion;
 import com.badlogic.gdx.utils.Array;
+
+import org.moe.natj.general.NatJ;
+import org.moe.natj.general.Pointer;
+import org.moe.natj.general.ann.ByValue;
+import org.moe.natj.objc.ann.Selector;
 
 import apple.NSObject;
 import apple.coregraphics.struct.CGPoint;
@@ -522,5 +522,14 @@ public class IOSGraphics extends NSObject implements Graphics, GLKViewDelegate, 
 		protected IOSMonitor (int virtualX, int virtualY, String name) {
 			super(virtualX, virtualY, name);
 		}
+	}
+
+	@Override
+	public Cursor newAndroidCursor (String drawableName, float xHotspot, float yHotspot) {
+		return null;
+	}
+
+	@Override
+	public void setAndroidCursor (Cursor cursor) {
 	}
 }

@@ -265,4 +265,13 @@ public class MockGraphics implements Graphics {
 	public void setResizable(boolean resizable) {
 
 	}
+
+	@Override
+	public Cursor newAndroidCursor (String drawableName, float xHotspot, float yHotspot) {
+		return null;
+	}
+
+	@Override
+	public void setAndroidCursor (Cursor cursor) {
+	}
 }

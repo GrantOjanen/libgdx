@@ -472,7 +472,7 @@ public class GwtInput implements Input {
 	}
 
 	@Override
-	public int[] getInputDeviceIDs() {
+	public int[] getDeviceIDs() {
 		return new int[0];
 	}
 

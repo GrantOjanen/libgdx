@@ -334,7 +334,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	}
 
 	@Override
-	public synchronized int[] getInputDeviceIDs() {
+	public synchronized int[] getDeviceIDs() {
 		return InputDevice.getDeviceIds();
 	}
 

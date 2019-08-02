@@ -828,6 +828,6 @@ public interface Input {
 	 * @param y the y-position */
 	public void setCursorPosition (int x, int y);
 
-	/** @return array of IDs for all connected keyboards. Android only. */
-	public int[] getInputDeviceIDs();
+	/** @return array of IDs for all connected devices. Android only. */
+	public int[] getDeviceIDs();
 }

@@ -490,7 +490,7 @@ public class GwtTestWrapper extends GdxTest {
 		}
 
 		@Override
-		public int[] getInputDeviceIDs() {
+		public int[] getDeviceIDs() {
 			return new int[0];
 		}
 	}

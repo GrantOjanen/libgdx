@@ -380,7 +380,7 @@ public class Lwjgl3Input implements Input, Disposable {
 	}
 
 	@Override
-	public int[] getInputDeviceIDs() {
+	public int[] getDeviceIDs() {
 		return new int[0];
 	}
 

@@ -952,7 +952,7 @@ public class LwjglAWTInput implements Input, MouseMotionListener, MouseListener,
 	}
 
 	@Override
-	public int[] getInputDeviceIDs() {
+	public int[] getDeviceIDs() {
 		return new int[0];
 	}
 

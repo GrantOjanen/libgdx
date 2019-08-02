@@ -1,17 +1,17 @@
 ### Fork Goals
 These are the goals for this fork. I wont send pull requests for all of them. Each goal will have it's own banch, and all complete goals are in the master branch.
 - [ ] detect multiple keyboards separately (Android)
-- [X] get gamepad system Id (Ex: Android InputDevice Id)
+- [X] get gamepad system Id (Ex: Android InputDevice Id) Branch: [controller-get-ids](https://github.com/GrantOjanen/libgdx/tree/controller-get-ids)
 - [ ] Arial font is proprietary and should be replaced
 - [ ] remove jlayer (all my games will use Ogg)
-- [X] set mp3 on HTML5 to not required be default (SoundManager2)
-- [X] Change Mouse Cursor Image (Android 7+)
+- [X] set mp3 on HTML5 to not required be default (SoundManager2) Branch: [gwt-mp3-change](https://github.com/GrantOjanen/libgdx/tree/gwt-mp3-change)
+- [X] Change Mouse Cursor Image (Android 7+) Branch: [android-cursor](https://github.com/GrantOjanen/libgdx/tree/android-cursor)
 - [ ] Capture Mouse Pointer (Android 8+)
 - [ ] Ability to get button clicks and precise motion events from separate mice at the same time. (Android)
 - [ ] Ability to distinguish between mice and touch events. (Android)
 - [ ] Change onPause to onStop to better support multi window mode (Android)
-- [X] add check for fullscreen (Android)
-- [X] Android gamepad vibrations
+- [X] add check for fullscreen (Android) Branch: [android-is-fullscreen](https://github.com/GrantOjanen/libgdx/tree/android-is-fullscreen)
+- [X] Android gamepad vibrations. Branch: [android-gamepad-vibration](https://github.com/GrantOjanen/libgdx/tree/android-gamepad-vibration)
 - [ ] Maybe change some code to better anticipate hotpluggable touch screens (Android, JavaScript)
 - [ ] try out new audio engine for html: https://github.com/libgdx/libgdx/pull/5659
 - [ ] documentation for all third party licenses

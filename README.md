@@ -1,6 +1,6 @@
 ### Fork Goals
 These are the goals for this fork. I wont send pull requests for all of them. Each goal will have it's own banch, and all complete goals are in the master branch.
-- [ ] detect multiple keyboards separately (Android)
+- [X] detect multiple keyboards separately (Android) Branch: [multi-keyboard](https://github.com/GrantOjanen/libgdx/tree/multi-keyboard)
 - [X] get gamepad system Id (Ex: Android InputDevice Id) Branch: [controller-get-ids](https://github.com/GrantOjanen/libgdx/tree/controller-get-ids)
 - [ ] Arial font is proprietary and should be replaced
 - [ ] remove jlayer (all my games will use Ogg)

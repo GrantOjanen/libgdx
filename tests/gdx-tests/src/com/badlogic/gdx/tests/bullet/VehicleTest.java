@@ -32,12 +32,11 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.physics.bullet.collision.Collision;
 import com.badlogic.gdx.physics.bullet.collision.btBoxShape;
 import com.badlogic.gdx.physics.bullet.dynamics.btDefaultVehicleRaycaster;
-import com.badlogic.gdx.physics.bullet.dynamics.btDiscreteDynamicsWorld;
 import com.badlogic.gdx.physics.bullet.dynamics.btDynamicsWorld;
 import com.badlogic.gdx.physics.bullet.dynamics.btRaycastVehicle;
+import com.badlogic.gdx.physics.bullet.dynamics.btRaycastVehicle.btVehicleTuning;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.physics.bullet.dynamics.btVehicleRaycaster;
-import com.badlogic.gdx.physics.bullet.dynamics.btRaycastVehicle.btVehicleTuning;
 import com.badlogic.gdx.physics.bullet.dynamics.btWheelInfo;
 
 /** @author Xoppa */
@@ -196,7 +195,7 @@ public class VehicleTest extends BaseBulletTest {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		switch (keycode) {
 		case Keys.DOWN:
 			downPressed = true;
@@ -211,11 +210,11 @@ public class VehicleTest extends BaseBulletTest {
 			rightPressed = true;
 			break;
 		}
-		return super.keyDown(keycode);
+		return super.keyDown(deviceID, keycode);
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		switch (keycode) {
 		case Keys.DOWN:
 			downPressed = false;
@@ -237,6 +236,6 @@ public class VehicleTest extends BaseBulletTest {
 			chassis.body.activate();
 			break;
 		}
-		return super.keyUp(keycode);
+		return super.keyUp(deviceID, keycode);
 	}
 }

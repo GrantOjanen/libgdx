@@ -44,7 +44,7 @@ public class SoftKeyboardTest extends GdxTest {
 		// "key typed" events, depending on the backend.
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
-			public boolean keyTyped (char character) {
+			public boolean keyTyped (int deviceID, char character) {
 				// convert \r to \n
 				if (character == '\r') character = '\n';
 

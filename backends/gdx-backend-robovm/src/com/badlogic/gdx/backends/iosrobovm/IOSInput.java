@@ -16,17 +16,6 @@
 
 package com.badlogic.gdx.backends.iosrobovm;
 
-import org.robovm.apple.audiotoolbox.AudioServices;
-import org.robovm.apple.coregraphics.CGPoint;
-import org.robovm.apple.coregraphics.CGRect;
-import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.objc.annotation.Method;
-import org.robovm.rt.VM;
-import org.robovm.rt.bro.NativeObject;
-import org.robovm.rt.bro.annotation.MachineSizedUInt;
-import org.robovm.rt.bro.annotation.Pointer;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -37,6 +26,35 @@ import com.badlogic.gdx.backends.iosrobovm.custom.UIAccelerometerDelegateAdapter
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Pool;
+
+import org.robovm.apple.audiotoolbox.AudioServices;
+import org.robovm.apple.coregraphics.CGPoint;
+import org.robovm.apple.coregraphics.CGRect;
+import org.robovm.apple.foundation.NSExtensions;
+import org.robovm.apple.foundation.NSObject;
+import org.robovm.apple.foundation.NSRange;
+import org.robovm.apple.uikit.UIAlertView;
+import org.robovm.apple.uikit.UIAlertViewDelegate;
+import org.robovm.apple.uikit.UIAlertViewDelegateAdapter;
+import org.robovm.apple.uikit.UIAlertViewStyle;
+import org.robovm.apple.uikit.UIDevice;
+import org.robovm.apple.uikit.UIForceTouchCapability;
+import org.robovm.apple.uikit.UIKeyboardType;
+import org.robovm.apple.uikit.UIReturnKeyType;
+import org.robovm.apple.uikit.UIScreen;
+import org.robovm.apple.uikit.UITextAutocapitalizationType;
+import org.robovm.apple.uikit.UITextAutocorrectionType;
+import org.robovm.apple.uikit.UITextField;
+import org.robovm.apple.uikit.UITextFieldDelegate;
+import org.robovm.apple.uikit.UITextFieldDelegateAdapter;
+import org.robovm.apple.uikit.UITextSpellCheckingType;
+import org.robovm.apple.uikit.UITouch;
+import org.robovm.apple.uikit.UITouchPhase;
+import org.robovm.objc.annotation.Method;
+import org.robovm.rt.VM;
+import org.robovm.rt.bro.NativeObject;
+import org.robovm.rt.bro.annotation.MachineSizedUInt;
+import org.robovm.rt.bro.annotation.Pointer;
 
 public class IOSInput implements Input {
 	static final int MAX_TOUCHES = 20;
@@ -356,6 +374,11 @@ public class IOSInput implements Input {
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public void getTextInput(TextInputListener listener, String title, String text, String hint) {
 		buildUIAlertView(listener, title, text, hint).show();
 	}	
@@ -378,7 +401,7 @@ public class IOSInput implements Input {
 
 		@Override
 		public void deleteBackward () {
-			app.input.inputProcessor.keyTyped((char)8);
+			app.input.inputProcessor.keyTyped(-999, (char)8);
 			super.deleteBackward();
 			Gdx.graphics.requestRendering();
 		}
@@ -389,7 +412,7 @@ public class IOSInput implements Input {
 		@Override
 		public boolean shouldChangeCharacters (UITextField textField, NSRange range, String string) {
 			for (int i = 0; i < range.getLength(); i++) {
-				app.input.inputProcessor.keyTyped((char)8);
+				app.input.inputProcessor.keyTyped(-999, (char)8);
 			}
 
 			if (string.isEmpty()) {
@@ -401,7 +424,7 @@ public class IOSInput implements Input {
 			string.getChars(0, string.length(), chars, 0);
 
 			for (int i = 0; i < chars.length; i++) {
-				app.input.inputProcessor.keyTyped(chars[i]);
+				app.input.inputProcessor.keyTyped(-999, chars[i]);
 			}
 			Gdx.graphics.requestRendering();
 
@@ -420,8 +443,8 @@ public class IOSInput implements Input {
 		@Override
 		public boolean shouldReturn (UITextField textField) {
 			if (keyboardCloseOnReturn) setOnscreenKeyboardVisible(false);
-			app.input.inputProcessor.keyDown(Keys.ENTER);
-			app.input.inputProcessor.keyTyped((char)13);
+			app.input.inputProcessor.keyDown(-999, Keys.ENTER);
+			app.input.inputProcessor.keyTyped(-999, (char)13);
 			Gdx.graphics.requestRendering();
 			return false;
 		}
@@ -618,6 +641,11 @@ public class IOSInput implements Input {
 
 	@Override
 	public void setCursorPosition (int x, int y) {
+	}
+
+	@Override
+	public int[] getInputDeviceIDs() {
+		return new int[0];
 	}
 
 	protected void onTouch (long touches) {

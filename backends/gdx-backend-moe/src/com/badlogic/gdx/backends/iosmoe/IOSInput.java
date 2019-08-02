@@ -16,10 +16,6 @@
 
 package com.badlogic.gdx.backends.iosmoe;
 
-import apple.uikit.*;
-import apple.uikit.enums.*;
-import org.moe.natj.general.ann.NInt;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -27,6 +23,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Pool;
+
+import org.moe.natj.general.ann.NInt;
 
 import apple.audiotoolbox.c.AudioToolbox;
 import apple.coregraphics.struct.CGPoint;
@@ -39,6 +37,20 @@ import apple.foundation.NSError;
 import apple.foundation.NSOperationQueue;
 import apple.foundation.NSSet;
 import apple.foundation.struct.NSRange;
+import apple.uikit.UIAlertView;
+import apple.uikit.UIDevice;
+import apple.uikit.UIScreen;
+import apple.uikit.UITextField;
+import apple.uikit.UITouch;
+import apple.uikit.enums.UIAlertViewStyle;
+import apple.uikit.enums.UIDeviceOrientation;
+import apple.uikit.enums.UIForceTouchCapability;
+import apple.uikit.enums.UIKeyboardType;
+import apple.uikit.enums.UIReturnKeyType;
+import apple.uikit.enums.UITextAutocapitalizationType;
+import apple.uikit.enums.UITextAutocorrectionType;
+import apple.uikit.enums.UITextSpellCheckingType;
+import apple.uikit.enums.UITouchPhase;
 import apple.uikit.protocol.UIAlertViewDelegate;
 import apple.uikit.protocol.UITextFieldDelegate;
 
@@ -318,6 +330,11 @@ public class IOSInput implements Input {
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public void getTextInput (TextInputListener listener, String title, String text, String hint) {
 		buildUIAlertView(listener, title, text, hint).show();
 	}
@@ -328,7 +345,7 @@ public class IOSInput implements Input {
 		public boolean textFieldShouldChangeCharactersInRangeReplacementString (UITextField textField, NSRange range,
 			String string) {
 			for (int i = 0; i < range.length(); i++) {
-				app.input.inputProcessor.keyTyped((char)8);
+				app.input.inputProcessor.keyTyped(-999, (char)8);
 			}
 
 			if (string.isEmpty()) {
@@ -340,7 +357,7 @@ public class IOSInput implements Input {
 			string.getChars(0, string.length(), chars, 0);
 
 			for (int i = 0; i < chars.length; i++) {
-				app.input.inputProcessor.keyTyped(chars[i]);
+				app.input.inputProcessor.keyTyped(-999, chars[i]);
 			}
 			Gdx.graphics.requestRendering();
 
@@ -359,8 +376,8 @@ public class IOSInput implements Input {
 		@Override
 		public boolean textFieldShouldReturn (UITextField textField) {
 			if (keyboardCloseOnReturn) setOnscreenKeyboardVisible(false);
-			app.input.inputProcessor.keyDown(Keys.ENTER);
-			app.input.inputProcessor.keyTyped((char)13);
+			app.input.inputProcessor.keyDown(-999, Keys.ENTER);
+			app.input.inputProcessor.keyTyped(-999, (char)13);
 			Gdx.graphics.requestRendering();
 			return false;
 		}
@@ -545,6 +562,11 @@ public class IOSInput implements Input {
 
 	@Override
 	public void setCursorPosition (int x, int y) {
+	}
+
+	@Override
+	public int[] getInputDeviceIDs() {
+		return new int[0];
 	}
 
 	protected void onTouch (NSSet<? extends UITouch> touches) {

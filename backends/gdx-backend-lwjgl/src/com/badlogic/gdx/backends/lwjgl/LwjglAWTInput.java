@@ -16,6 +16,11 @@
 
 package com.badlogic.gdx.backends.lwjgl;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.utils.IntSet;
+import com.badlogic.gdx.utils.Pool;
+
 import java.awt.AWTException;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -53,11 +58,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.utils.IntSet;
-import com.badlogic.gdx.utils.Pool;
 
 public class LwjglAWTInput implements Input, MouseMotionListener, MouseListener, MouseWheelListener, KeyListener {
 	class KeyEvent {
@@ -304,6 +304,11 @@ public class LwjglAWTInput implements Input, MouseMotionListener, MouseListener,
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public boolean isTouched () {
 		return touchDown;
 	}
@@ -350,15 +355,15 @@ public class LwjglAWTInput implements Input, MouseMotionListener, MouseListener,
 					currentEventTimeStamp = e.timeStamp;
 					switch (e.type) {
 					case KeyEvent.KEY_DOWN:
-						processor.keyDown(e.keyCode);
+						processor.keyDown(-999, e.keyCode);
 						keyJustPressed = true;
 						justPressedKeys[e.keyCode] = true;
 						break;
 					case KeyEvent.KEY_UP:
-						processor.keyUp(e.keyCode);
+						processor.keyUp(-999, e.keyCode);
 						break;
 					case KeyEvent.KEY_TYPED:
-						processor.keyTyped(e.keyChar);
+						processor.keyTyped(-999, e.keyChar);
 					}
 					usedKeyEvents.free(e);
 				}
@@ -944,6 +949,11 @@ public class LwjglAWTInput implements Input, MouseMotionListener, MouseListener,
 		if (robot != null) {
 			robot.mouseMove(canvas.getLocationOnScreen().x + x, canvas.getLocationOnScreen().y + y);
 		}
+	}
+
+	@Override
+	public int[] getInputDeviceIDs() {
+		return new int[0];
 	}
 
 	@Override

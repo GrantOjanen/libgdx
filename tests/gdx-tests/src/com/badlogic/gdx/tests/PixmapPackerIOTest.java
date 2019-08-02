@@ -103,14 +103,14 @@ public class PixmapPackerIOTest extends GdxTest {
 		Gdx.app.log("PixmapPackerTest", "Number of updated textures: " + atlas.getTextures().size);
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
-			public boolean keyDown (int keycode) {
+			public boolean keyDown (int deviceID, int keycode) {
 				if (keycode >= Input.Keys.NUM_0 && keycode <= Input.Keys.NUM_9) {
 					int number = keycode - Input.Keys.NUM_0;
 					if (number < textureRegions.size) {
 						pageToShow = number;
 					}
 				}
-				return super.keyDown(keycode);
+				return super.keyDown(deviceID, keycode);
 			}
 		});
 

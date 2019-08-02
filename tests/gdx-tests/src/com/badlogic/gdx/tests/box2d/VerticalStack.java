@@ -96,7 +96,7 @@ public class VerticalStack extends Box2DTest {
 	}
 
 	@Override
-	public boolean keyDown (int keyCode) {
+	public boolean keyDown (int deviceID, int keyCode) {
 		if (keyCode == Input.Keys.COMMA) {
 			if (m_bullet != null) {
 				world.destroyBody(m_bullet);

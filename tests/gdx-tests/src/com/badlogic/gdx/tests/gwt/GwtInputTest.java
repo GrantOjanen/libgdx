@@ -18,8 +18,6 @@ package com.badlogic.gdx.tests.gwt;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -77,19 +75,19 @@ public class GwtInputTest extends GdxTest {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		Gdx.app.log("GdxInputTest", "key down: " + keycode);
-		return super.keyDown(keycode);
+		return super.keyDown(deviceID, keycode);
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		Gdx.app.log("GdxInputTest", "key typed: '" + character + "'");
 		return false;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		Gdx.app.log("GdxInputTest", "key up: " + keycode);
 		return false;
 	}

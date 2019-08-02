@@ -247,11 +247,11 @@ public class BaseBulletTest extends BulletTest {
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == Keys.ENTER) {
 			toggleDebugMode();
 			return true;
 		}
-		return super.keyUp(keycode);
+		return super.keyUp(deviceID, keycode);
 	}
 }

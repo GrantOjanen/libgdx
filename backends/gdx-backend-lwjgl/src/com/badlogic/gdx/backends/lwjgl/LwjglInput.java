@@ -16,12 +16,20 @@
 
 package com.badlogic.gdx.backends.lwjgl;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.utils.IntSet;
+import com.badlogic.gdx.utils.Pool;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,22 +44,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.IntSet;
-
-import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Cursor;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.utils.Pool;
 
 /** An implementation of the {@link Input} interface hooking a LWJGL panel for input.
  * 
@@ -252,6 +244,11 @@ final public class LwjglInput implements Input {
 		return justPressedKeys[key];
 	}
 
+	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
 	public boolean isTouched () {
 		boolean button = Mouse.isButtonDown(0) || Mouse.isButtonDown(1) || Mouse.isButtonDown(2);
 		return button;
@@ -337,13 +334,13 @@ final public class LwjglInput implements Input {
 					currentEventTimeStamp = e.timeStamp;
 					switch (e.type) {
 					case KeyEvent.KEY_DOWN:
-						processor.keyDown(e.keyCode);
+						processor.keyDown(-999, e.keyCode);
 						break;
 					case KeyEvent.KEY_UP:
-						processor.keyUp(e.keyCode);
+						processor.keyUp(-999, e.keyCode);
 						break;
 					case KeyEvent.KEY_TYPED:
-						processor.keyTyped(e.keyChar);
+						processor.keyTyped(-999, e.keyChar);
 					}
 					usedKeyEvents.free(e);
 				}
@@ -1082,6 +1079,11 @@ final public class LwjglInput implements Input {
 	@Override
 	public void setCursorPosition (int x, int y) {
 		Mouse.setCursorPosition(x, Gdx.graphics.getHeight() - 1 - y);
+	}
+
+	@Override
+	public int[] getInputDeviceIDs() {
+		return new int[0];
 	}
 
 	@Override

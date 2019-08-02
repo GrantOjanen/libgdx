@@ -170,7 +170,7 @@ public class GwtTestWrapper extends GdxTest {
 
 		Gdx.input = new InputWrapper(Gdx.input) {
 			@Override
-			public boolean keyUp (int keycode) {
+			public boolean keyUp (int deviceID, int keycode) {
 				if (keycode == Keys.ESCAPE) {
 					if (test != null) {
 						Gdx.app.log("GdxTestGwt", "Exiting current test.");
@@ -358,6 +358,11 @@ public class GwtTestWrapper extends GdxTest {
 		}
 
 		@Override
+		public String getDeviceName(int deviceID) {
+			return null;
+		}
+
+		@Override
 		public boolean isButtonJustPressed (int button) {
 			return false;
 		}
@@ -482,6 +487,11 @@ public class GwtTestWrapper extends GdxTest {
 		@Override
 		public void setCursorPosition (int x, int y) {
 			input.setCursorPosition(x, y);
+		}
+
+		@Override
+		public int[] getInputDeviceIDs() {
+			return new int[0];
 		}
 	}
 

@@ -28,9 +28,6 @@
 
 package com.badlogic.gdx.tests.box2d;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -46,6 +43,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class ContactListenerTest extends Box2DTest implements ContactListener {
 

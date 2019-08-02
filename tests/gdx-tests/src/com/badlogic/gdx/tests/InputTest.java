@@ -53,20 +53,20 @@ public class InputTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		Gdx.app.log("Input Test", "key down: " + keycode);
 		if (keycode == Keys.G) Gdx.input.setCursorCatched(!Gdx.input.isCursorCatched());
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		Gdx.app.log("Input Test", "key typed: '" + character + "'");
 		return false;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		Gdx.app.log("Input Test", "key up: " + keycode);
 		return false;
 	}

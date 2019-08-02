@@ -146,6 +146,11 @@ public class MockInput implements Input {
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public void getTextInput(TextInputListener listener, String title, String text, String hint) {
 		
 	}
@@ -268,5 +273,10 @@ public class MockInput implements Input {
 	@Override
 	public void setCursorPosition(int x, int y) {
 
+	}
+
+	@Override
+	public int[] getInputDeviceIDs() {
+		return new int[0];
 	}
 }

@@ -16,10 +16,6 @@
 
 package com.badlogic.gdx.backends.android;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,13 +29,13 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.service.wallpaper.WallpaperService.Engine;
+import android.view.InputDevice;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -47,17 +43,20 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.backends.android.AndroidLiveWallpaperService.AndroidWallpaperEngine;
 import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.Pool;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /** An implementation of the {@link Input} interface for Android.
  * 
  * @author mzechner */
 /** @author jshapcot */
 public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
+
 	static class KeyEvent {
 		static final int KEY_DOWN = 0;
 		static final int KEY_UP = 1;
@@ -67,6 +66,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 		int type;
 		int keyCode;
 		char keyChar;
+		int deviceID;
 	}
 
 	static class TouchEvent {
@@ -329,6 +329,16 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	}
 
 	@Override
+	public synchronized String getDeviceName (int deviceID) {
+		return InputDevice.getDevice(deviceID).getName();
+	}
+
+	@Override
+	public synchronized int[] getInputDeviceIDs() {
+		return InputDevice.getDeviceIds();
+	}
+
+	@Override
 	public synchronized boolean isKeyJustPressed (int key) {
 		if (key == Input.Keys.ANY_KEY) {
 			return keyJustPressed;
@@ -383,15 +393,15 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 					currentEventTimeStamp = e.timeStamp;
 					switch (e.type) {
 					case KeyEvent.KEY_DOWN:
-						processor.keyDown(e.keyCode);
+						processor.keyDown(e.deviceID, e.keyCode);
 						keyJustPressed = true;
 						justPressedKeys[e.keyCode] = true;
 						break;
 					case KeyEvent.KEY_UP:
-						processor.keyUp(e.keyCode);
+						processor.keyUp(e.deviceID, e.keyCode);
 						break;
 					case KeyEvent.KEY_TYPED:
-						processor.keyTyped(e.keyChar);
+						processor.keyTyped(e.deviceID, e.keyChar);
 					}
 					usedKeyEvents.free(e);
 				}
@@ -524,6 +534,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 					event.timeStamp = System.nanoTime();
 					event.keyCode = 0;
 					event.keyChar = chars.charAt(i);
+					event.deviceID = e.getDeviceId();
 					event.type = KeyEvent.KEY_TYPED;
 					keyEvents.add(event);
 				}
@@ -543,6 +554,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 				event.timeStamp = System.nanoTime();
 				event.keyChar = 0;
 				event.keyCode = e.getKeyCode();
+				event.deviceID = e.getDeviceId();
 				event.type = KeyEvent.KEY_DOWN;
 
 				// Xperia hack for circle key. gah...
@@ -563,6 +575,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 				event.timeStamp = timeStamp;
 				event.keyChar = 0;
 				event.keyCode = e.getKeyCode();
+				event.deviceID = e.getDeviceId();
 				event.type = KeyEvent.KEY_UP;
 				// Xperia hack for circle key. gah...
 				if (keyCode == android.view.KeyEvent.KEYCODE_BACK && e.isAltPressed()) {
@@ -575,6 +588,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 				event.timeStamp = timeStamp;
 				event.keyChar = character;
 				event.keyCode = 0;
+				event.deviceID = e.getDeviceId();
 				event.type = KeyEvent.KEY_TYPED;
 				keyEvents.add(event);
 

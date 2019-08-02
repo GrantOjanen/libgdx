@@ -133,7 +133,7 @@ public class BodyTypes extends Box2DTest {
 	private final Vector2 tmp = new Vector2();
 
 	@Override
-	public boolean keyDown (int keyCode) {
+	public boolean keyDown (int deviceID, int keyCode) {
 		if (keyCode == Keys.D) m_platform.setType(BodyType.DynamicBody);
 		if (keyCode == Keys.S) m_platform.setType(BodyType.StaticBody);
 		if (keyCode == Keys.K) {

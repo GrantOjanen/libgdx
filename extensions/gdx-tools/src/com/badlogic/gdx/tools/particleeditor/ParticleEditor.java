@@ -16,20 +16,6 @@
 
 package com.badlogic.gdx.tools.particleeditor;
 
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.util.HashMap;
-
-import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.border.CompoundBorder;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
@@ -41,7 +27,6 @@ import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -55,6 +40,32 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.HashMap;
+
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.CompoundBorder;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 public class ParticleEditor extends JFrame {
 	public static final String DEFAULT_PARTICLE = "particle.png";
@@ -540,7 +551,7 @@ public class ParticleEditor extends JFrame {
 			}
 		}
 
-		public boolean keyDown (int keycode) {
+		public boolean keyDown (int deviceID, int keycode) {
 			if (keycode == Input.Keys.SPACE) {
 				effect.setPosition(previewImagePanel.valueX.getValue() + previewImagePanel.valueWidth.getValue()/2f,
 					previewImagePanel.valueY.getValue() + previewImagePanel.valueHeight.getValue()/2f);
@@ -548,11 +559,11 @@ public class ParticleEditor extends JFrame {
 			return false;
 		}
 
-		public boolean keyUp (int keycode) {
+		public boolean keyUp (int deviceID, int keycode) {
 			return false;
 		}
 
-		public boolean keyTyped (char character) {
+		public boolean keyTyped (int deviceID, char character) {
 			return false;
 		}
 

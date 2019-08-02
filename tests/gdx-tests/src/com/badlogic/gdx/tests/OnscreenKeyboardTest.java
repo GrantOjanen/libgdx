@@ -47,18 +47,18 @@ public class OnscreenKeyboardTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 
 		return false;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		if (character == '\b' && text.length() >= 1) {
 			text = text.substring(0, text.length() - 1);
 		} else if (character == '\n') {

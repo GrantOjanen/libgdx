@@ -31,7 +31,6 @@ import com.badlogic.gdx.tests.box2d.Cantilever;
 import com.badlogic.gdx.tests.box2d.Chain;
 import com.badlogic.gdx.tests.box2d.CharacterCollision;
 import com.badlogic.gdx.tests.box2d.CollisionFiltering;
-import com.badlogic.gdx.tests.box2d.ContactListenerTest;
 import com.badlogic.gdx.tests.box2d.ContinuousTest;
 import com.badlogic.gdx.tests.box2d.ConveyorBelt;
 import com.badlogic.gdx.tests.box2d.DebugRendererTest;
@@ -79,21 +78,21 @@ public class Box2DTestCollection extends GdxTest implements InputProcessor, Gest
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
-		tests[testIndex].keyDown(keycode);
+	public boolean keyDown (int deviceID, int keycode) {
+		tests[testIndex].keyDown(deviceID, keycode);
 
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
-		tests[testIndex].keyTyped(character);
+	public boolean keyTyped (int deviceID, char character) {
+		tests[testIndex].keyTyped(deviceID, character);
 		return false;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
-		tests[testIndex].keyUp(keycode);
+	public boolean keyUp (int deviceID, int keycode) {
+		tests[testIndex].keyUp(deviceID, keycode);
 		return false;
 	}
 

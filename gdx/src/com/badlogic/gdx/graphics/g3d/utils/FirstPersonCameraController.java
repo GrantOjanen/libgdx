@@ -43,13 +43,13 @@ public class FirstPersonCameraController extends InputAdapter {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		keys.put(keycode, keycode);
 		return true;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		keys.remove(keycode, 0);
 		return true;
 	}

@@ -185,7 +185,7 @@ public class SpriteCacheTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		if (keycode != Input.Keys.SPACE) return false;
 		float scale = MathUtils.random(0.75f, 1.25f);
 		float angle = MathUtils.random(1, 360);

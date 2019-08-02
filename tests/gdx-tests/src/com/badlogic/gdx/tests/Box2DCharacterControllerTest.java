@@ -317,13 +317,13 @@ public class Box2DCharacterControllerTest extends GdxTest implements Application
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		if (keycode == Keys.W) jump = true;
 		return false;
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == Keys.W) jump = false;
 		return false;
 	}

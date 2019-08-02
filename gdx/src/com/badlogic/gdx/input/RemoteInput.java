@@ -16,18 +16,16 @@
 
 package com.badlogic.gdx.input;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.utils.GdxRuntimeException;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.TextInputListener;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.IntSet;
 
 /** <p>
  * An {@link Input} implementation that receives touch, key, accelerometer and compass events from a remote Android device. Just
@@ -123,7 +121,7 @@ public class RemoteInput implements Runnable, Input {
 				if (keyEvent != null) {
 					switch (keyEvent.type) {
 					case KeyEvent.KEY_DOWN:
-						processor.keyDown(keyEvent.keyCode);
+						processor.keyDown(-999, keyEvent.keyCode);
 						if (!keys[keyEvent.keyCode]) {
 							keyCount++;
 							keys[keyEvent.keyCode] = true;
@@ -132,14 +130,14 @@ public class RemoteInput implements Runnable, Input {
 						justPressedKeys[keyEvent.keyCode] = true;
 						break;
 					case KeyEvent.KEY_UP:
-						processor.keyUp(keyEvent.keyCode);
+						processor.keyUp(-999, keyEvent.keyCode);
 						if (keys[keyEvent.keyCode]) {
 							keyCount--;
 							keys[keyEvent.keyCode] = false;
 						}
 						break;
 					case KeyEvent.KEY_TYPED:
-						processor.keyTyped(keyEvent.keyChar);
+						processor.keyTyped(-999, keyEvent.keyChar);
 						break;
 					}
 				}
@@ -449,6 +447,11 @@ public class RemoteInput implements Runnable, Input {
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public void getTextInput (TextInputListener listener, String title, String text, String hint) {
 		Gdx.app.getInput().getTextInput(listener, title, text, hint);
 	}
@@ -582,6 +585,11 @@ public class RemoteInput implements Runnable, Input {
 
 	@Override
 	public void setCursorPosition (int x, int y) {
+	}
+
+	@Override
+	public int[] getDeviceIDs() {
+		return new int[0];
 	}
 
 	@Override

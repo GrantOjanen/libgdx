@@ -16,12 +16,12 @@
 
 package com.badlogic.gdx.input;
 
-import java.io.DataOutputStream;
-import java.net.Socket;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Peripheral;
 import com.badlogic.gdx.InputProcessor;
+
+import java.io.DataOutputStream;
+import java.net.Socket;
 
 /** Sends all inputs from touch, key, accelerometer and compass to a {@link RemoteInput} at the given ip/port. Instantiate this and
  * call sendUpdate() periodically.
@@ -85,7 +85,7 @@ public class RemoteSender implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		synchronized (this) {
 			if (!connected) return false;
 		}
@@ -102,7 +102,7 @@ public class RemoteSender implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		synchronized (this) {
 			if (!connected) return false;
 		}
@@ -119,7 +119,7 @@ public class RemoteSender implements InputProcessor {
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		synchronized (this) {
 			if (!connected) return false;
 		}

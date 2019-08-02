@@ -25,14 +25,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.PixmapPacker;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-
-import java.io.IOException;
 
 public class PixmapPackerTest extends GdxTest {
 
@@ -114,14 +116,14 @@ public class PixmapPackerTest extends GdxTest {
 		Gdx.app.log("PixmapPackerTest", "Number of updated textures: " + atlas.getTextures().size);
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
-			public boolean keyDown (int keycode) {
+			public boolean keyDown (int deviceID, int keycode) {
 				if (keycode >= Input.Keys.NUM_0 && keycode <= Input.Keys.NUM_9) {
 					int number = keycode - Input.Keys.NUM_0;
 					if (number < textureRegions.size) {
 						pageToShow = number;
 					}
 				}
-				return super.keyDown(keycode);
+				return super.keyDown(deviceID, keycode);
 			}
 		});
 

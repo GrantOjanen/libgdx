@@ -211,5 +211,4 @@ public class Cantilever extends Box2DTest {
 			shape.dispose();
 		}
 	}
-
 }

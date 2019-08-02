@@ -323,7 +323,7 @@ public class OcclusionCullingTest extends BaseBulletTest {
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		oclBuffer.clear();
 		switch (character) {
 			case '0':

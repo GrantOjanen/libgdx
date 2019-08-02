@@ -671,6 +671,12 @@ public interface Input {
 	 * @return true or false. */
 	public boolean isKeyJustPressed (int key);
 
+	/** Returnsthe name of an input device on Android by it's id.
+	 *
+	 * @param deviceID The id of the input device to get the name for.
+	 * @return device name. */
+	public String getDeviceName (int deviceID);
+
 	/** System dependent method to input a string of text. A dialog box will be created with the given title and the given text as a
 	 * message for the user. Once the dialog has been closed the provided {@link TextInputListener} will be called on the rendering
 	 * thread.
@@ -821,4 +827,7 @@ public interface Input {
 	 * @param x the x-position
 	 * @param y the y-position */
 	public void setCursorPosition (int x, int y);
+
+	/** @return array of IDs for all connected devices. Android only. */
+	public int[] getDeviceIDs();
 }

@@ -17,9 +17,8 @@
 package com.badlogic.gdx.graphics.g3d.utils;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
@@ -220,7 +219,7 @@ public class CameraInputController extends GestureDetector {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		if (keycode == activateKey) activatePressed = true;
 		if (keycode == forwardKey)
 			forwardPressed = true;
@@ -233,7 +232,7 @@ public class CameraInputController extends GestureDetector {
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == activateKey) {
 			activatePressed = false;
 			button = -1;

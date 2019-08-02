@@ -239,11 +239,11 @@ public class Benchmark3DTest extends BaseG3dHudTest {
 	}
 	
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == Keys.SPACE || keycode == Keys.MENU) {
 			onLoaded();
 		}
-		return super.keyUp(keycode);
+		return super.keyUp(deviceID, keycode);
 	}
 	
 	@Override

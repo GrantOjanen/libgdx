@@ -70,15 +70,15 @@ public class ParticleEmitterTest extends GdxTest {
 				return false;
 			}
 
-			public boolean keyUp (int keycode) {
+			public boolean keyUp (int deviceID, int keycode) {
 				return false;
 			}
 
-			public boolean keyTyped (char character) {
+			public boolean keyTyped (int deviceID, char character) {
 				return false;
 			}
 
-			public boolean keyDown (int keycode) {
+			public boolean keyDown (int deviceID, int keycode) {
 				ParticleEmitter emitter = emitters.get(emitterIndex);
 				if (keycode == Input.Keys.DPAD_UP)
 					particleCount += 5;

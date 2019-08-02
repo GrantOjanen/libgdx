@@ -16,19 +16,19 @@
 
 package com.badlogic.gdx.backends.lwjgl3;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputEventQueue;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.glutils.HdpiMode;
+import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.TimeUtils;
+
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCharCallback;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWScrollCallback;
-
-import com.badlogic.gdx.graphics.glutils.HdpiMode;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputEventQueue;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.TimeUtils;
 
 public class Lwjgl3Input implements Input, Disposable {
 	private final Lwjgl3Window window;
@@ -51,7 +51,7 @@ public class Lwjgl3Input implements Input, Disposable {
 			switch (action) {
 			case GLFW.GLFW_PRESS:
 				key = getGdxKeyCode(key);
-				eventQueue.keyDown(key);								
+				eventQueue.keyDown(-999, key);
 				pressedKeys++;
 				keyJustPressed = true;
 				justPressedKeys[key] = true;
@@ -63,13 +63,13 @@ public class Lwjgl3Input implements Input, Disposable {
 			case GLFW.GLFW_RELEASE:
 				pressedKeys--;
 				Lwjgl3Input.this.window.getGraphics().requestRendering();
-				eventQueue.keyUp(getGdxKeyCode(key));
+				eventQueue.keyUp(-999, getGdxKeyCode(key));
 				break;
 
 			case GLFW.GLFW_REPEAT:
 				if (lastCharacter != 0) {
 					Lwjgl3Input.this.window.getGraphics().requestRendering();
-					eventQueue.keyTyped(lastCharacter);
+					eventQueue.keyTyped(-999, lastCharacter);
 				}
 				break;
 			}
@@ -82,7 +82,7 @@ public class Lwjgl3Input implements Input, Disposable {
 			if ((codepoint & 0xff00) == 0xf700) return;
 			lastCharacter = (char)codepoint;
 			Lwjgl3Input.this.window.getGraphics().requestRendering();
-			eventQueue.keyTyped((char)codepoint);
+			eventQueue.keyTyped(-999, (char)codepoint);
 		}
 	};
 	
@@ -332,6 +332,11 @@ public class Lwjgl3Input implements Input, Disposable {
 	}
 
 	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
+	@Override
 	public void getTextInput(TextInputListener listener, String title, String text, String hint) {
 		// FIXME getTextInput does nothing
 		listener.canceled();
@@ -373,7 +378,12 @@ public class Lwjgl3Input implements Input, Disposable {
 		}
 		GLFW.glfwSetCursorPos(window.getWindowHandle(), x, y);		
 	}
-	
+
+	@Override
+	public int[] getDeviceIDs() {
+		return new int[0];
+	}
+
 	static char characterForKeyCode (int key) {
 		// Map certain key codes to character codes.
 		switch (key) {

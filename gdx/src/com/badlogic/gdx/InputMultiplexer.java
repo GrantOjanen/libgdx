@@ -73,33 +73,33 @@ public class InputMultiplexer implements InputProcessor {
 		return processors;
 	}
 
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int device, int keycode) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).keyDown(keycode)) return true;
+				if (((InputProcessor)items[i]).keyDown(-999, keycode)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int device, int keycode) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).keyUp(keycode)) return true;
+				if (((InputProcessor)items[i]).keyUp(-999, keycode)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int device, char character) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).keyTyped(character)) return true;
+				if (((InputProcessor)items[i]).keyTyped(-999, character)) return true;
 		} finally {
 			processors.end();
 		}

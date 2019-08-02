@@ -69,7 +69,7 @@ public class TextureAtlasTest extends GdxTest {
 		Gdx.gl.glClearColor(0, 1, 0, 1);
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
-			public boolean keyUp (int keycode) {
+			public boolean keyUp (int deviceID, int keycode) {
 				if (keycode == Keys.UP) {
 					badlogicSmall.flip(false, true);
 				} else if (keycode == Keys.RIGHT) {
@@ -79,7 +79,7 @@ public class TextureAtlasTest extends GdxTest {
 				} else if (keycode == Keys.DOWN) {
 					badlogicSmall.rotate90(true);
 				}
-				return super.keyUp(keycode);
+				return super.keyUp(deviceID, keycode);
 			}
 		});
 	}

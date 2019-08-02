@@ -26,22 +26,25 @@ import com.badlogic.gdx.Input.Buttons;
  * @author mzechner */
 public interface InputProcessor {
 	/** Called when a key was pressed
-	 * 
+	 *
+	 * @param device the system id for the keyboard. Android only, returns -999 on other platforms
 	 * @param keycode one of the constants in {@link Input.Keys}
 	 * @return whether the input was processed */
-	public boolean keyDown (int keycode);
+	public boolean keyDown (int device, int keycode);
 
 	/** Called when a key was released
-	 * 
+	 *
+	 * @param device the system id for the keyboard. Android only, returns -999 on other platforms
 	 * @param keycode one of the constants in {@link Input.Keys}
 	 * @return whether the input was processed */
-	public boolean keyUp (int keycode);
+	public boolean keyUp (int device, int keycode);
 
 	/** Called when a key was typed
-	 * 
+	 *
+	 * @param device the system id for the keyboard. Android only, returns -999 on other platforms
 	 * @param character The character
 	 * @return whether the input was processed */
-	public boolean keyTyped (char character);
+	public boolean keyTyped (int device, char character);
 
 	/** Called when the screen was touched or a mouse button was pressed. The button parameter will be {@link Buttons#LEFT} on iOS.
 	 * @param screenX The x coordinate, origin is in the upper left corner

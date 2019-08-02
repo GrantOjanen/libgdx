@@ -71,13 +71,13 @@ public class InputEventQueue implements InputProcessor {
 				i += q[i];
 				break;
 			case KEY_DOWN:
-				localProcessor.keyDown(q[i++]);
+				localProcessor.keyDown(-999, q[i++]);
 				break;
 			case KEY_UP:
-				localProcessor.keyUp(q[i++]);
+				localProcessor.keyUp(-999, q[i++]);
 				break;
 			case KEY_TYPED:
-				localProcessor.keyTyped((char)q[i++]);
+				localProcessor.keyTyped(-999, (char)q[i++]);
 				break;
 			case TOUCH_DOWN:
 				localProcessor.touchDown(q[i++], q[i++], q[i++], q[i++]);
@@ -148,21 +148,21 @@ public class InputEventQueue implements InputProcessor {
 		queue.add((int)time);
 	}
 
-	public synchronized boolean keyDown (int keycode) {
+	public synchronized boolean keyDown (int device, int keycode) {
 		queue.add(KEY_DOWN);
 		queueTime();
 		queue.add(keycode);
 		return false;
 	}
 
-	public synchronized boolean keyUp (int keycode) {
+	public synchronized boolean keyUp (int device, int keycode) {
 		queue.add(KEY_UP);
 		queueTime();
 		queue.add(keycode);
 		return false;
 	}
 
-	public synchronized boolean keyTyped (char character) {
+	public synchronized boolean keyTyped (int device, char character) {
 		queue.add(KEY_TYPED);
 		queueTime();
 		queue.add(character);

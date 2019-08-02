@@ -127,5 +127,4 @@ public class Bridge extends Box2DTest {
 			shape.dispose();
 		}
 	}
-
 }

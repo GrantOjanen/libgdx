@@ -246,6 +246,11 @@ public class GwtInput implements Input {
 		return justPressedKeys[key];
 	}
 
+	@Override
+	public String getDeviceName(int deviceID) {
+		return null;
+	}
+
 	public void getTextInput (TextInputListener listener, String title, String text, String hint) {
 		TextInputDialogBox dialog = new TextInputDialogBox(title, text, hint);
 		final TextInputListener capturedListener = listener;
@@ -466,6 +471,11 @@ public class GwtInput implements Input {
 		// FIXME??
 	}
 
+	@Override
+	public int[] getDeviceIDs() {
+		return new int[0];
+	}
+
 	// kindly borrowed from our dear playn friends...
 	static native void addEventListener (JavaScriptObject target, String name, GwtInput handler, boolean capture) /*-{
 		target
@@ -654,8 +664,8 @@ public class GwtInput implements Input {
 				if (code == 67) {
 					e.preventDefault();
 					if (processor != null) {
-						processor.keyDown(code);
-						processor.keyTyped('\b');
+						processor.keyDown(-999, code);
+						processor.keyTyped(-999, '\b');
 					}
 				} else {
 					if (!pressedKeys[code]) {
@@ -665,7 +675,7 @@ public class GwtInput implements Input {
 						keyJustPressed = true;
 						justPressedKeys[code] = true;
 						if (processor != null) {
-							processor.keyDown(code);
+							processor.keyDown(-999, code);
 						}
 					}
 				}
@@ -674,7 +684,7 @@ public class GwtInput implements Input {
 			if (e.getType().equals("keypress")) {
 				// Gdx.app.log("GwtInput", "keypress");
 				char c = (char)e.getCharCode();
-				if (processor != null) processor.keyTyped(c);
+				if (processor != null) processor.keyTyped(-999, c);
 			}
 
 			if (e.getType().equals("keyup")) {
@@ -686,7 +696,7 @@ public class GwtInput implements Input {
 					pressedKeys[code] = false;
 				}
 				if (processor != null) {
-					processor.keyUp(code);
+					processor.keyUp(-999, code);
 				}
 			}
 		}
@@ -703,7 +713,7 @@ public class GwtInput implements Input {
 					pressedKeys[code] = false;
 				}
 				if (processor != null) {
-					processor.keyUp(code);
+					processor.keyUp(-999, code);
 				}
 			}
 		}

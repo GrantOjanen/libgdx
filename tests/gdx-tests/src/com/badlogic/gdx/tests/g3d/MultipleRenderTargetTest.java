@@ -26,7 +26,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -49,20 +48,14 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderableSorter;
 import com.badlogic.gdx.graphics.g3d.utils.ShaderProvider;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.GLFrameBuffer;
-import com.badlogic.gdx.graphics.glutils.GLOnlyTextureData;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.tests.utils.GdxTest;
-import com.badlogic.gdx.utils.*;
-import com.badlogic.gdx.utils.StringBuilder;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
-import java.util.HashMap;
-import java.util.Map;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.badlogic.gdx.utils.Pool;
 
 /** MRT test compliant with GLES 3.0, with per pixel lighting and normal and specular mapping.
  * Thanks to http://www.blendswap.com/blends/view/73922 for the cannon model, licensed under CC-BY-SA
@@ -192,7 +185,7 @@ public class MultipleRenderTargetTest extends GdxTest {
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
+	public boolean keyDown (int deviceID, int keycode) {
 		if (keycode == Input.Keys.SPACE) {
 			for (Light light : lights) {
 				light.vy = MathUtils.random(10f, 20f);
@@ -200,7 +193,7 @@ public class MultipleRenderTargetTest extends GdxTest {
 				light.vz = MathUtils.random(-10f, 10f);
 			}
 		}
-		return super.keyDown(keycode);
+		return super.keyDown(deviceID, keycode);
 	}
 
 	float track;

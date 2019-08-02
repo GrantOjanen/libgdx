@@ -22,7 +22,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cubemap;
 import com.badlogic.gdx.graphics.Cubemap.CubemapSide;
-import com.badlogic.gdx.graphics.g3d.Attributes;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
@@ -361,8 +360,8 @@ public class ShaderCollectionTest extends BaseG3dHudTest {
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == Keys.SPACE || keycode == Keys.MENU) switchAnimation();
-		return super.keyUp(keycode);
+		return super.keyUp(deviceID, keycode);
 	}
 }

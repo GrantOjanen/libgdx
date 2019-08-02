@@ -122,18 +122,18 @@ public class BulletTestCollection extends GdxTest implements InputProcessor, Ges
 	}
 
 	@Override
-	public boolean keyDown (int keycode) {
-		return tests[testIndex].keyDown(keycode);
+	public boolean keyDown (int deviceID, int keycode) {
+		return tests[testIndex].keyDown(deviceID, keycode);
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
-		return tests[testIndex].keyTyped(character);
+	public boolean keyTyped (int deviceID, char character) {
+		return tests[testIndex].keyTyped(deviceID, character);
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
-		boolean result = tests[testIndex].keyUp(keycode);
+	public boolean keyUp (int deviceID, int keycode) {
+		boolean result = tests[testIndex].keyUp(deviceID, keycode);
 		if ((result == false) && (keycode == Keys.SPACE || keycode == Keys.MENU)) {
 			next();
 			result = true;

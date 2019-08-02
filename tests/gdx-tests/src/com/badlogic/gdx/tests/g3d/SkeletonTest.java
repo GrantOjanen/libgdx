@@ -148,8 +148,8 @@ public class SkeletonTest extends BaseG3dHudTest {
 	}
 
 	@Override
-	public boolean keyUp (int keycode) {
+	public boolean keyUp (int deviceID, int keycode) {
 		if (keycode == Keys.SPACE || keycode == Keys.MENU) switchAnimation();
-		return super.keyUp(keycode);
+		return super.keyUp(deviceID, keycode);
 	}
 }

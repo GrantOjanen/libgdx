@@ -86,5 +86,4 @@ public class Chain extends Box2DTest {
 			shape.dispose();
 		}
 	}
-
 }

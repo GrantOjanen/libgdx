@@ -85,7 +85,7 @@ public class GLProfilerErrorTest extends GdxTest {
 	}
 
 	@Override
-	public boolean keyTyped (char character) {
+	public boolean keyTyped (int deviceID, char character) {
 		String DEBUGGER_DISABLED_MESSAGE = "Error will be detected after enabling the debugger";
 		switch (character) {
 		case 'e':

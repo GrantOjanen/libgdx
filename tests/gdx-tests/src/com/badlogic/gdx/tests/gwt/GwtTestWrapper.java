@@ -181,7 +181,7 @@ public class GwtTestWrapper extends GdxTest {
 			}
 
 			@Override
-			public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+			public boolean touchDown (int deviceID, int screenX, int screenY, int pointer, int button) {
 				if (screenX < Gdx.graphics.getWidth() / 10.0 && screenY < Gdx.graphics.getHeight() / 10.0) {
 					if (test != null) {
 						dispose = true;
@@ -482,6 +482,11 @@ public class GwtTestWrapper extends GdxTest {
 		@Override
 		public void setCursorPosition (int x, int y) {
 			input.setCursorPosition(x, y);
+		}
+
+		@Override
+		public boolean getIsMouse(int deviceID) {
+			return false;
 		}
 	}
 

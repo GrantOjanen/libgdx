@@ -354,19 +354,19 @@ final public class LwjglInput implements Input {
 					currentEventTimeStamp = e.timeStamp;
 					switch (e.type) {
 					case TouchEvent.TOUCH_DOWN:
-						processor.touchDown(e.x, e.y, e.pointer, e.button);
+						processor.touchDown(-999, e.x, e.y, e.pointer, e.button);
 						break;
 					case TouchEvent.TOUCH_UP:
-						processor.touchUp(e.x, e.y, e.pointer, e.button);
+						processor.touchUp(-999, e.x, e.y, e.pointer, e.button);
 						break;
 					case TouchEvent.TOUCH_DRAGGED:
-						processor.touchDragged(e.x, e.y, e.pointer);
+						processor.touchDragged(-999, e.x, e.y, e.pointer);
 						break;
 					case TouchEvent.TOUCH_MOVED:
-						processor.mouseMoved(e.x, e.y);
+						processor.mouseMoved(-999, e.x, e.y);
 						break;
 					case TouchEvent.TOUCH_SCROLLED:
-						processor.scrolled(e.scrollAmount);
+						processor.scrolled(-999, e.scrollAmount);
 					}
 					usedTouchEvents.free(e);
 				}
@@ -1082,6 +1082,11 @@ final public class LwjglInput implements Input {
 	@Override
 	public void setCursorPosition (int x, int y) {
 		Mouse.setCursorPosition(x, Gdx.graphics.getHeight() - 1 - y);
+	}
+
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return false;
 	}
 
 	@Override

@@ -98,30 +98,30 @@ public class Box2DTestCollection extends GdxTest implements InputProcessor, Gest
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
-		tests[testIndex].touchDown(x, y, pointer, button);
+	public boolean touchDown (int deviceID, int x, int y, int pointer, int button) {
+		tests[testIndex].touchDown(deviceID, x, y, pointer, button);
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
-		tests[testIndex].touchDragged(x, y, pointer);
+	public boolean touchDragged (int deviceID, int x, int y, int pointer) {
+		tests[testIndex].touchDragged(deviceID, x, y, pointer);
 		return false;
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
-		tests[testIndex].touchUp(x, y, pointer, button);
+	public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
+		tests[testIndex].touchUp(deviceID, x, y, pointer, button);
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
+	public boolean mouseMoved (int deviceID, int x, int y) {
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceID, int amount) {
 		return false;
 	}
 

@@ -32,25 +32,25 @@ public class InputAdapter implements InputProcessor {
 		return false;
 	}
 
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int deviceID, int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceID, int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved (int screenX, int screenY) {
+	public boolean touchDragged (int deviceID, int screenX, int screenY, int pointer) {
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean mouseMoved (int deviceID, int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled (int deviceID, int amount) {
 		return false;
 	}
 }

@@ -50,27 +50,27 @@ public class BulletTest implements ApplicationListener, InputProcessor, GestureL
 	}
 
 	@Override
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int deviceID, int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
 	@Override
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceID, int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int deviceID, int screenX, int screenY, int pointer) {
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved (int screenX, int screenY) {
+	public boolean mouseMoved (int deviceID, int screenX, int screenY) {
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceID, int amount) {
 		return false;
 	}
 

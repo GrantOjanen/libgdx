@@ -106,55 +106,55 @@ public class InputMultiplexer implements InputProcessor {
 		return false;
 	}
 
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int deviceID, int screenX, int screenY, int pointer, int button) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).touchDown(screenX, screenY, pointer, button)) return true;
+				if (((InputProcessor)items[i]).touchDown(deviceID, screenX, screenY, pointer, button)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceID, int screenX, int screenY, int pointer, int button) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).touchUp(screenX, screenY, pointer, button)) return true;
+				if (((InputProcessor)items[i]).touchUp(deviceID, screenX, screenY, pointer, button)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int deviceID, int screenX, int screenY, int pointer) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).touchDragged(screenX, screenY, pointer)) return true;
+				if (((InputProcessor)items[i]).touchDragged(deviceID, screenX, screenY, pointer)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean mouseMoved (int screenX, int screenY) {
+	public boolean mouseMoved (int deviceID, int screenX, int screenY) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).mouseMoved(screenX, screenY)) return true;
+				if (((InputProcessor)items[i]).mouseMoved(deviceID, screenX, screenY)) return true;
 		} finally {
 			processors.end();
 		}
 		return false;
 	}
 
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceID, int amount) {
 		Object[] items = processors.begin();
 		try {
 			for (int i = 0, n = processors.size; i < n; i++)
-				if (((InputProcessor)items[i]).scrolled(amount)) return true;
+				if (((InputProcessor)items[i]).scrolled(deviceID, amount)) return true;
 		} finally {
 			processors.end();
 		}

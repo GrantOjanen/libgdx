@@ -48,16 +48,16 @@ public class ParticleEmitterTest extends GdxTest {
 		effect.getEmitters().add(emitters.get(0));
 
 		inputProcessor = new InputProcessor() {
-			public boolean touchUp (int x, int y, int pointer, int button) {
+			public boolean touchUp (int deviceId, int x, int y, int pointer, int button) {
 				return false;
 			}
 
-			public boolean touchDragged (int x, int y, int pointer) {
+			public boolean touchDragged (int deviceId, int x, int y, int pointer) {
 				effect.setPosition(x, Gdx.graphics.getHeight() - y);
 				return false;
 			}
 
-			public boolean touchDown (int x, int y, int pointer, int newParam) {
+			public boolean touchDown (int deviceId, int x, int y, int pointer, int newParam) {
 				// effect.setPosition(x, Gdx.graphics.getHeight() - y);
 				ParticleEmitter emitter = emitters.get(emitterIndex);
 				particleCount += 100;
@@ -111,12 +111,12 @@ public class ParticleEmitterTest extends GdxTest {
 			}
 
 			@Override
-			public boolean mouseMoved (int x, int y) {
+			public boolean mouseMoved (int deviceId, int x, int y) {
 				return false;
 			}
 
 			@Override
-			public boolean scrolled (int amount) {
+			public boolean scrolled (int deviceId, int amount) {
 				return false;
 			}
 		};

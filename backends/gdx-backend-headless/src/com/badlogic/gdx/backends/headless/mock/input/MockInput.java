@@ -269,4 +269,9 @@ public class MockInput implements Input {
 	public void setCursorPosition(int x, int y) {
 
 	}
+
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return true;
+	}
 }

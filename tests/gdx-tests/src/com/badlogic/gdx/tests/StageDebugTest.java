@@ -16,8 +16,6 @@
 
 package com.badlogic.gdx.tests;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,6 +28,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.tests.utils.GdxTest;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 
 /** @author Daniel Holderbaum */
 public class StageDebugTest extends GdxTest {
@@ -107,7 +108,7 @@ public class StageDebugTest extends GdxTest {
 	}
 
 	@Override
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int deviceId, int screenX, int screenY, int pointer, int button) {
 		switchStage();
 		return false;
 	}

@@ -17,7 +17,6 @@
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -166,14 +165,14 @@ public class PathTest extends GdxTest {
 	}
 
 	@Override
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceId, int screenX, int screenY, int pointer, int button) {
 		touch(screenX, screenY);
-		return super.touchUp(screenX, screenY, pointer, button);
+		return super.touchUp(deviceId, screenX, screenY, pointer, button);
 	}
 
 	@Override
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int deviceId, int screenX, int screenY, int pointer) {
 		touch(screenX, screenY);
-		return super.touchDragged(screenX, screenY, pointer);
+		return super.touchDragged(deviceId, screenX, screenY, pointer);
 	}
 }

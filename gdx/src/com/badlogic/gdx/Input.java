@@ -821,4 +821,7 @@ public interface Input {
 	 * @param x the x-position
 	 * @param y the y-position */
 	public void setCursorPosition (int x, int y);
+
+	/** @return if the device is a mouse. Android only. */
+	public boolean getIsMouse (int deviceID);
 }

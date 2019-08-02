@@ -48,7 +48,7 @@ public class AndroidMultiTouchHandler implements AndroidTouchHandler {
 				x = (int)event.getX(pointerIndex);
 				y = (int)event.getY(pointerIndex);
 				if (android.os.Build.VERSION.SDK_INT >= 14) button = toGdxButton(event.getButtonState());
-				if (button != -1) postTouchEvent(input, TouchEvent.TOUCH_DOWN, x, y, realPointerIndex, button, timeStamp);
+				if (button != -1) postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_DOWN, x, y, realPointerIndex, button, timeStamp);
 				input.touchX[realPointerIndex] = x;
 				input.touchY[realPointerIndex] = y;
 				input.deltaX[realPointerIndex] = 0;
@@ -68,7 +68,7 @@ public class AndroidMultiTouchHandler implements AndroidTouchHandler {
 				x = (int)event.getX(pointerIndex);
 				y = (int)event.getY(pointerIndex);
 				button = input.button[realPointerIndex];
-				if (button != -1) postTouchEvent(input, TouchEvent.TOUCH_UP, x, y, realPointerIndex, button, timeStamp);
+				if (button != -1) postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_UP, x, y, realPointerIndex, button, timeStamp);
 				input.touchX[realPointerIndex] = x;
 				input.touchY[realPointerIndex] = y;
 				input.deltaX[realPointerIndex] = 0;
@@ -103,9 +103,9 @@ public class AndroidMultiTouchHandler implements AndroidTouchHandler {
 					if (realPointerIndex >= AndroidInput.NUM_TOUCHES) break;
 					button = input.button[realPointerIndex];
 					if (button != -1)
-						postTouchEvent(input, TouchEvent.TOUCH_DRAGGED, x, y, realPointerIndex, button, timeStamp);
+						postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_DRAGGED, x, y, realPointerIndex, button, timeStamp);
 					else
-						postTouchEvent(input, TouchEvent.TOUCH_MOVED, x, y, realPointerIndex, 0, timeStamp);
+						postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_MOVED, x, y, realPointerIndex, 0, timeStamp);
 					input.deltaX[realPointerIndex] = x - input.touchX[realPointerIndex];
 					input.deltaY[realPointerIndex] = y - input.touchY[realPointerIndex];
 					input.touchX[realPointerIndex] = x;
@@ -148,7 +148,7 @@ public class AndroidMultiTouchHandler implements AndroidTouchHandler {
 		return -1;
 	}
 
-	private void postTouchEvent (AndroidInput input, int type, int x, int y, int pointer, int button, long timeStamp) {
+	private void postTouchEvent (AndroidInput input, int deviceID, int type, int x, int y, int pointer, int button, long timeStamp) {
 		TouchEvent event = input.usedTouchEvents.obtain();
 		event.timeStamp = timeStamp;
 		event.pointer = pointer;
@@ -156,6 +156,7 @@ public class AndroidMultiTouchHandler implements AndroidTouchHandler {
 		event.y = y;
 		event.type = type;
 		event.button = button;
+		event.deviceID = deviceID;
 		input.touchEvents.add(event);
 	}
 

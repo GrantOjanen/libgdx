@@ -12,7 +12,7 @@ These are the goals for this fork. I wont send pull requests for all of them. Ea
 - [ ] Change onPause to onStop to better support multi window mode (Android)
 - [X] add check for fullscreen (Android) Branch: [android-is-fullscreen](https://github.com/GrantOjanen/libgdx/tree/android-is-fullscreen)
 - [X] Android gamepad vibrations. Branch: [android-gamepad-vibration](https://github.com/GrantOjanen/libgdx/tree/android-gamepad-vibration)
-- [ ] Maybe change some code to better anticipate hotpluggable touch screens (Android, JavaScript)
+- [ ] change some code to better anticipate hotpluggable touch screens (Android, JavaScript)
 - [ ] try out new audio engine for html: https://github.com/libgdx/libgdx/pull/5659
 - [ ] documentation for all third party licenses
 - [ ] Android be pure Java

@@ -241,28 +241,28 @@ public class SpriteBatchTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int newParam) {
+	public boolean touchDown (int deviceId, int x, int y, int pointer, int newParam) {
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int deviceId, int x, int y, int pointer) {
 		return false;
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceId, int x, int y, int pointer, int button) {
 		renderMethod = (renderMethod + 1) % 2;
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
+	public boolean mouseMoved (int deviceId, int x, int y) {
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceId, int amount) {
 		return false;
 	}
 

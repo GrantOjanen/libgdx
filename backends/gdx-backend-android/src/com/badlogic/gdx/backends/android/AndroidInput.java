@@ -83,6 +83,7 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 		int scrollAmount;
 		int button;
 		int pointer;
+		int deviceID;
 	}
 
 	Pool<KeyEvent> usedKeyEvents = new Pool<KeyEvent>(16, 1000) {
@@ -339,6 +340,11 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	}
 
 	@Override
+	public synchronized boolean getIsMouse (int deviceID) {
+		return (InputDevice.getDevice(deviceID).getSources() & InputDevice.SOURCE_MOUSE) == InputDevice.SOURCE_MOUSE;
+	}
+
+	@Override
 	public synchronized boolean isKeyJustPressed (int key) {
 		if (key == Input.Keys.ANY_KEY) {
 			return keyJustPressed;
@@ -412,21 +418,21 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 					currentEventTimeStamp = e.timeStamp;
 					switch (e.type) {
 					case TouchEvent.TOUCH_DOWN:
-						processor.touchDown(e.x, e.y, e.pointer, e.button);
+						processor.touchDown(e.deviceID, e.x, e.y, e.pointer, e.button);
 						justTouched = true;
 						justPressedButtons[e.button] = true;
 						break;
 					case TouchEvent.TOUCH_UP:
-						processor.touchUp(e.x, e.y, e.pointer, e.button);
+						processor.touchUp(e.deviceID, e.x, e.y, e.pointer, e.button);
 						break;
 					case TouchEvent.TOUCH_DRAGGED:
-						processor.touchDragged(e.x, e.y, e.pointer);
+						processor.touchDragged(e.deviceID, e.x, e.y, e.pointer);
 						break;
 					case TouchEvent.TOUCH_MOVED:
-						processor.mouseMoved(e.x, e.y);
+						processor.mouseMoved(e.deviceID, e.x, e.y);
 						break;
 					case TouchEvent.TOUCH_SCROLLED:
-						processor.scrolled(e.scrollAmount);
+						processor.scrolled(e.deviceID, e.scrollAmount);
 					}
 					usedTouchEvents.free(e);
 				}
@@ -481,24 +487,25 @@ public class AndroidInput implements Input, OnKeyListener, OnTouchListener {
 	/** Called in {@link AndroidLiveWallpaperService} on tap
 	 * @param x
 	 * @param y */
-	public void onTap (int x, int y) {
-		postTap(x, y);
+	public void onTap (int deviceID, int x, int y) {
+		postTap(deviceID, x, y);
 	}
 
 	/** Called in {@link AndroidLiveWallpaperService} on drop
 	 * @param x
 	 * @param y */
-	public void onDrop (int x, int y) {
-		postTap(x, y);
+	public void onDrop (int deviceID, int x, int y) {
+		postTap(deviceID, x, y);
 	}
 
-	protected void postTap (int x, int y) {
+	protected void postTap (int deviceID, int x, int y) {
 		synchronized (this) {
 			TouchEvent event = usedTouchEvents.obtain();
 			event.timeStamp = System.nanoTime();
 			event.pointer = 0;
 			event.x = x;
 			event.y = y;
+			event.deviceID = deviceID;
 			event.type = TouchEvent.TOUCH_DOWN;
 			touchEvents.add(event);
 

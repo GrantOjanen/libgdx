@@ -332,7 +332,7 @@ public class Box2DCharacterControllerTest extends GdxTest implements Application
 	Vector3 point = new Vector3();
 
 	@Override
-	public boolean touchDown (int x, int y, int pointerId, int button) {
+	public boolean touchDown (int deviceID, int x, int y, int pointerId, int button) {
 		cam.unproject(point.set(x, y, 0));
 
 		if (button == Input.Buttons.LEFT) {

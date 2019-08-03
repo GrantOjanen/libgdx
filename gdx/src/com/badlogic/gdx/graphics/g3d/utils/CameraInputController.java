@@ -152,7 +152,7 @@ public class CameraInputController extends GestureDetector {
 	private boolean multiTouch;
 
 	@Override
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int device, int screenX, int screenY, int pointer, int button) {
 		touched |= (1 << pointer);
 		multiTouch = !MathUtils.isPowerOfTwo(touched);
 		if (multiTouch)
@@ -166,7 +166,7 @@ public class CameraInputController extends GestureDetector {
 	}
 
 	@Override
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int device, int screenX, int screenY, int pointer, int button) {
 		touched &= -1 ^ (1 << pointer);
 		multiTouch = !MathUtils.isPowerOfTwo(touched);
 		if (button == this.button) this.button = -1;
@@ -191,7 +191,7 @@ public class CameraInputController extends GestureDetector {
 	}
 
 	@Override
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int device, int screenX, int screenY, int pointer) {
 		boolean result = super.touchDragged(screenX, screenY, pointer);
 		if (result || this.button < 0) return result;
 		final float deltaX = (screenX - startX) / Gdx.graphics.getWidth();
@@ -202,7 +202,7 @@ public class CameraInputController extends GestureDetector {
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int device, int amount) {
 		return zoom(amount * scrollFactor * translateUnits);
 	}
 

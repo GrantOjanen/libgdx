@@ -361,25 +361,25 @@ public class ParticleEditor extends JFrame {
 			}
 
 			@Override
-			public boolean scrolled (int amount) {
+			public boolean scrolled (int deviceID, int amount) {
 				worldCamera.zoom += amount * 0.01f;
 				worldCamera.zoom = MathUtils.clamp(worldCamera.zoom, 0.01f, 5000);
 				worldCamera.update();
-				return super.scrolled(amount);
+				return super.scrolled(deviceID, amount);
 			}
 
 			@Override
-			public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+			public boolean touchDown (int deviceID, int screenX, int screenY, int pointer, int button) {
 				if (button == Input.Buttons.LEFT) {
 					canDrag = true;
 				} else {
 					canDrag = false;
 				}
-				return super.touchDown(screenX, screenY, pointer, button);
+				return super.touchDown(deviceID, screenX, screenY, pointer, button);
 			}
 
 			@Override
-			public boolean touchDragged (int x, int y, int pointer) {
+			public boolean touchDragged (int deviceID, int x, int y, int pointer) {
 				if (!canDrag) return false;
 
 				camera.unproject(curr.set(x, y, 0));
@@ -394,7 +394,7 @@ public class ParticleEditor extends JFrame {
 			}
 
 			@Override
-			public boolean touchUp (int x, int y, int pointer, int button) {
+			public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
 				last.set(-1, -1, -1);
 				canDrag = false;
 				return false;
@@ -567,7 +567,7 @@ public class ParticleEditor extends JFrame {
 			return false;
 		}
 
-		public boolean touchDown (int x, int y, int pointer, int newParam) {
+		public boolean touchDown (int deviceID, int x, int y, int pointer, int newParam) {
 			if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
 				Vector3 touchPoint = new Vector3(x, y, 0);
 				worldCamera.unproject(touchPoint);
@@ -576,14 +576,14 @@ public class ParticleEditor extends JFrame {
 			return false;
 		}
 
-		public boolean touchUp (int x, int y, int pointer, int button) {
+		public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
 			ParticleEditor.this.dispatchEvent(new WindowEvent(ParticleEditor.this, WindowEvent.WINDOW_LOST_FOCUS));
 			ParticleEditor.this.dispatchEvent(new WindowEvent(ParticleEditor.this, WindowEvent.WINDOW_GAINED_FOCUS));
 			ParticleEditor.this.requestFocusInWindow();
 			return false;
 		}
 
-		public boolean touchDragged (int x, int y, int pointer) {
+		public boolean touchDragged (int deviceID, int x, int y, int pointer) {
 			if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
 				Vector3 touchPoint = new Vector3(x, y, 0);
 				worldCamera.unproject(touchPoint);
@@ -605,12 +605,12 @@ public class ParticleEditor extends JFrame {
 		}
 
 		@Override
-		public boolean mouseMoved (int x, int y) {
+		public boolean mouseMoved (int deviceID, int x, int y) {
 			return false;
 		}
 
 		@Override
-		public boolean scrolled (int amount) {
+		public boolean scrolled (int deviceID, int amount) {
 			return false;
 		}
 

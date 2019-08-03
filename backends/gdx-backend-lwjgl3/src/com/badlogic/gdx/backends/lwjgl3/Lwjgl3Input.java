@@ -100,14 +100,14 @@ public class Lwjgl3Input implements Input, Disposable {
 				//  - if the user did not move the wheel for more than 250ms
 				scrollYRemainder = 0;
 				int scrollAmount = (int)-Math.signum(scrollY);
-				eventQueue.scrolled(scrollAmount);
+				eventQueue.scrolled(-999, scrollAmount);
 				lastScrollEventTime = TimeUtils.nanoTime();
 			}
 			else {
 				scrollYRemainder += scrollY;
 				while (Math.abs(scrollYRemainder) >= 1) {
 					int scrollAmount = (int)-Math.signum(scrollY);
-					eventQueue.scrolled(scrollAmount);
+					eventQueue.scrolled(-999, scrollAmount);
 					lastScrollEventTime = TimeUtils.nanoTime();
 					scrollYRemainder += scrollAmount;
 				}
@@ -137,9 +137,9 @@ public class Lwjgl3Input implements Input, Disposable {
 			
 			Lwjgl3Input.this.window.getGraphics().requestRendering();
 			if (mousePressed > 0) {								
-				eventQueue.touchDragged(mouseX, mouseY, 0);
+				eventQueue.touchDragged(-999, mouseX, mouseY, 0);
 			} else {								
-				eventQueue.mouseMoved(mouseX, mouseY);
+				eventQueue.mouseMoved(-999, mouseX, mouseY);
 			}			
 		}
 	};
@@ -155,11 +155,11 @@ public class Lwjgl3Input implements Input, Disposable {
 				justTouched = true;
 				justPressedButtons[gdxButton] = true;
 				Lwjgl3Input.this.window.getGraphics().requestRendering();
-				eventQueue.touchDown(mouseX, mouseY, 0, gdxButton);
+				eventQueue.touchDown(-999, mouseX, mouseY, 0, gdxButton);
 			} else {
 				mousePressed = Math.max(0, mousePressed - 1);
 				Lwjgl3Input.this.window.getGraphics().requestRendering();
-				eventQueue.touchUp(mouseX, mouseY, 0, gdxButton);
+				eventQueue.touchUp(-999, mouseX, mouseY, 0, gdxButton);
 			}
 		}
 		
@@ -382,6 +382,11 @@ public class Lwjgl3Input implements Input, Disposable {
 	@Override
 	public int[] getDeviceIDs() {
 		return new int[0];
+	}
+
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return true;
 	}
 
 	static char characterForKeyCode (int key) {

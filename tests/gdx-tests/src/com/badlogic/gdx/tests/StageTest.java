@@ -231,7 +231,7 @@ public class StageTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int deviceId, int x, int y, int pointer, int button) {
 		return ui.touchDown(x, y, pointer, button);
 	}
 

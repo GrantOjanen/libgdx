@@ -106,7 +106,7 @@ public class MaterialTest extends GdxTest {
 	}
 
 	@Override
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceID, int screenX, int screenY, int pointer, int button) {
 
 		if (!material.has(TextureAttribute.Diffuse))
 			material.set(textureAttribute);
@@ -117,7 +117,7 @@ public class MaterialTest extends GdxTest {
 		else
 			material.clear();
 
-		return super.touchUp(screenX, screenY, pointer, button);
+		return super.touchUp(deviceID, screenX, screenY, pointer, button);
 	}
 
 	@Override

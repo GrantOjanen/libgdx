@@ -342,7 +342,7 @@ public class Box2DTest extends GdxTest implements InputProcessor {
 	};
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int newParam) {
+	public boolean touchDown (int deviceID, int x, int y, int pointer, int newParam) {
 		// translate the mouse coordinates to world coordinates
 		testPoint.set(x, y, 0);
 		camera.unproject(testPoint);
@@ -378,7 +378,7 @@ public class Box2DTest extends GdxTest implements InputProcessor {
 	Vector2 target = new Vector2();
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int deviceID, int x, int y, int pointer) {
 		// if a mouse joint exists we simply update
 		// the target of the joint based on the new
 		// mouse coordinates
@@ -390,7 +390,7 @@ public class Box2DTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
 		// if a mouse joint exists we simply destroy it
 		if (mouseJoint != null) {
 			world.destroyJoint(mouseJoint);

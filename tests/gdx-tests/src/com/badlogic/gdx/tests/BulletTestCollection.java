@@ -142,28 +142,28 @@ public class BulletTestCollection extends GdxTest implements InputProcessor, Ges
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int deviceID, int x, int y, int pointer, int button) {
 		return tests[testIndex].touchDown(x, y, pointer, button);
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
-		return tests[testIndex].touchDragged(x, y, pointer);
+	public boolean touchDragged (int deviceID, int x, int y, int pointer) {
+		return tests[testIndex].touchDragged(deviceID, x, y, pointer);
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
-		return tests[testIndex].touchUp(x, y, pointer, button);
+	public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
+		return tests[testIndex].touchUp(deviceID, x, y, pointer, button);
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
-		return tests[testIndex].mouseMoved(x, y);
+	public boolean mouseMoved (int deviceID, int x, int y) {
+		return tests[testIndex].mouseMoved(deviceID, x, y);
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
-		return tests[testIndex].scrolled(amount);
+	public boolean scrolled (int deviceID, int amount) {
+		return tests[testIndex].scrolled(deviceID, amount);
 	}
 
 	@Override

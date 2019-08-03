@@ -80,19 +80,19 @@ public class InputEventQueue implements InputProcessor {
 				localProcessor.keyTyped(-999, (char)q[i++]);
 				break;
 			case TOUCH_DOWN:
-				localProcessor.touchDown(q[i++], q[i++], q[i++], q[i++]);
+				localProcessor.touchDown(-999, q[i++], q[i++], q[i++], q[i++]);
 				break;
 			case TOUCH_UP:
-				localProcessor.touchUp(q[i++], q[i++], q[i++], q[i++]);
+				localProcessor.touchUp(-999, q[i++], q[i++], q[i++], q[i++]);
 				break;
 			case TOUCH_DRAGGED:
-				localProcessor.touchDragged(q[i++], q[i++], q[i++]);
+				localProcessor.touchDragged(-999, q[i++], q[i++], q[i++]);
 				break;
 			case MOUSE_MOVED:
-				localProcessor.mouseMoved(q[i++], q[i++]);
+				localProcessor.mouseMoved(-999, q[i++], q[i++]);
 				break;
 			case SCROLLED:
-				localProcessor.scrolled(q[i++]);
+				localProcessor.scrolled(-999, q[i++]);
 				break;
 			default:
 				throw new RuntimeException();
@@ -169,7 +169,7 @@ public class InputEventQueue implements InputProcessor {
 		return false;
 	}
 
-	public synchronized boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public synchronized boolean touchDown (int device, int screenX, int screenY, int pointer, int button) {
 		queue.add(TOUCH_DOWN);
 		queueTime();
 		queue.add(screenX);
@@ -179,7 +179,7 @@ public class InputEventQueue implements InputProcessor {
 		return false;
 	}
 
-	public synchronized boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public synchronized boolean touchUp (int device, int screenX, int screenY, int pointer, int button) {
 		queue.add(TOUCH_UP);
 		queueTime();
 		queue.add(screenX);
@@ -189,7 +189,7 @@ public class InputEventQueue implements InputProcessor {
 		return false;
 	}
 
-	public synchronized boolean touchDragged (int screenX, int screenY, int pointer) {
+	public synchronized boolean touchDragged (int device, int screenX, int screenY, int pointer) {
 		// Skip any queued touch dragged events for the same pointer.
 		for (int i = next(TOUCH_DRAGGED, 0); i >= 0; i = next(TOUCH_DRAGGED, i + 6)) {
 			if (queue.get(i + 5) == pointer) {
@@ -205,7 +205,7 @@ public class InputEventQueue implements InputProcessor {
 		return false;
 	}
 
-	public synchronized boolean mouseMoved (int screenX, int screenY) {
+	public synchronized boolean mouseMoved (int device, int screenX, int screenY) {
 		// Skip any queued mouse moved events.
 		for (int i = next(MOUSE_MOVED, 0); i >= 0; i = next(MOUSE_MOVED, i + 5)) {
 			queue.set(i, SKIP);
@@ -218,7 +218,7 @@ public class InputEventQueue implements InputProcessor {
 		return false;
 	}
 
-	public synchronized boolean scrolled (int amount) {
+	public synchronized boolean scrolled (int device, int amount) {
 		queue.add(SCROLLED);
 		queueTime();
 		queue.add(amount);

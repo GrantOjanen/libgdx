@@ -42,7 +42,7 @@ public class PerspectiveCamController extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int deviceId, int x, int y, int pointer, int button) {
 		mode = TransformMode.Rotate;
 		last.set(x, y);
 		tCurr.set(x, y);
@@ -50,7 +50,7 @@ public class PerspectiveCamController extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceId, int x, int y, int pointer, int button) {
 		mode = TransformMode.None;
 		return true;
 	}
@@ -69,7 +69,7 @@ public class PerspectiveCamController extends InputAdapter {
 	Vector3 point = new Vector3();
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int deviceId, int x, int y, int pointer) {
 		if (pointer != 0) return false;
 		delta.set(x, y).sub(last);
 
@@ -102,7 +102,7 @@ public class PerspectiveCamController extends InputAdapter {
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceId, int amount) {
 		cam.fieldOfView -= -amount * Gdx.graphics.getDeltaTime() * 100;
 		cam.update();
 		return true;

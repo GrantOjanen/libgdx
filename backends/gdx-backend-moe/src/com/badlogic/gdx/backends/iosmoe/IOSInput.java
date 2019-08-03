@@ -569,6 +569,11 @@ public class IOSInput implements Input {
 		return new int[0];
 	}
 
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return false;
+	}
+
 	protected void onTouch (NSSet<? extends UITouch> touches) {
 		toTouchEvents(touches);
 		Gdx.graphics.requestRendering();
@@ -580,12 +585,12 @@ public class IOSInput implements Input {
 			for (TouchEvent event : touchEvents) {
 				currentEventTimeStamp = event.timestamp;
 				if (event.phase == UITouchPhase.Began) {
-					if (inputProcessor != null) inputProcessor.touchDown(event.x, event.y, event.pointer, Buttons.LEFT);
+					if (inputProcessor != null) inputProcessor.touchDown(-999, event.x, event.y, event.pointer, Buttons.LEFT);
 					if (numTouched == 1) justTouched = true;
 				} else if (event.phase == UITouchPhase.Cancelled || event.phase == UITouchPhase.Ended) {
-					if (inputProcessor != null) inputProcessor.touchUp(event.x, event.y, event.pointer, Buttons.LEFT);
+					if (inputProcessor != null) inputProcessor.touchUp(-999, event.x, event.y, event.pointer, Buttons.LEFT);
 				} else if (event.phase == UITouchPhase.Moved || event.phase == UITouchPhase.Stationary) {
-					if (inputProcessor != null) inputProcessor.touchDragged(event.x, event.y, event.pointer);
+					if (inputProcessor != null) inputProcessor.touchDragged(-999, event.x, event.y, event.pointer);
 				}
 			}
 			touchEventPool.freeAll(touchEvents);

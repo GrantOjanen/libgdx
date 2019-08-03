@@ -279,4 +279,9 @@ public class MockInput implements Input {
 	public int[] getDeviceIDs() {
 		return new int[0];
 	}
+
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return true;
+	}
 }

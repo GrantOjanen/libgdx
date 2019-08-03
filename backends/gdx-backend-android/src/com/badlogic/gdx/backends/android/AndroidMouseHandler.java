@@ -47,7 +47,7 @@ public class AndroidMouseHandler {
 				x = (int)event.getX();
 				y = (int)event.getY();
 				if ((x != deltaX) || (y != deltaY)) { // Avoid garbage events
-					postTouchEvent(input, TouchEvent.TOUCH_MOVED, x, y, 0, timeStamp);
+					postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_MOVED, x, y, 0, timeStamp);
 					deltaX = x;
 					deltaY = y;
 				}
@@ -55,7 +55,7 @@ public class AndroidMouseHandler {
 
 			case MotionEvent.ACTION_SCROLL:
 				scrollAmount = (int)-Math.signum(event.getAxisValue(MotionEvent.AXIS_VSCROLL));
-				postTouchEvent(input, TouchEvent.TOUCH_SCROLLED, 0, 0, scrollAmount, timeStamp);
+				postTouchEvent(input, event.getDeviceId(), TouchEvent.TOUCH_SCROLLED, 0, 0, scrollAmount, timeStamp);
 
 			}
 		}
@@ -78,13 +78,14 @@ public class AndroidMouseHandler {
 		Gdx.app.log("AndroidMouseHandler", "action " + actionStr);
 	}
 
-	private void postTouchEvent (AndroidInput input, int type, int x, int y, int scrollAmount, long timeStamp) {
+	private void postTouchEvent (AndroidInput input, int deviceID, int type, int x, int y, int scrollAmount, long timeStamp) {
 		TouchEvent event = input.usedTouchEvents.obtain();
 		event.timeStamp = timeStamp;
 		event.x = x;
 		event.y = y;
 		event.type = type;
 		event.scrollAmount = scrollAmount;
+		event.deviceID = deviceID;
 		input.touchEvents.add(event);
 	}
 

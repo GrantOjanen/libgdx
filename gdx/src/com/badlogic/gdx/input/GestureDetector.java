@@ -98,7 +98,7 @@ public class GestureDetector extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int device, int x, int y, int pointer, int button) {
 		return touchDown((float)x, (float)y, pointer, button);
 	}
 
@@ -138,7 +138,7 @@ public class GestureDetector extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int device, int x, int y, int pointer) {
 		return touchDragged((float)x, (float)y, pointer);
 	}
 
@@ -179,7 +179,7 @@ public class GestureDetector extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int device, int x, int y, int pointer, int button) {
 		return touchUp((float)x, (float)y, pointer, button);
 	}
 
@@ -304,7 +304,7 @@ public class GestureDetector extends InputAdapter {
 	 * to hand it to the next listener, true otherwise).
 	 * @author mzechner */
 	public static interface GestureListener {
-		/** @see InputProcessor#touchDown(int, int, int, int) */
+		/** @see InputProcessor#touchDown(int, int, int, int, int) */
 		public boolean touchDown (float x, float y, int pointer, int button);
 
 		/** Called when a tap occured. A tap happens if a touch went down on the screen and was lifted again without moving outside

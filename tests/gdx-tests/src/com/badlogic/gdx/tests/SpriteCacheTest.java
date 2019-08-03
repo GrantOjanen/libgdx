@@ -199,7 +199,7 @@ public class SpriteCacheTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceId, int x, int y, int pointer, int button) {
 		renderMethod = (renderMethod + 1) % 2;
 		return false;
 	}

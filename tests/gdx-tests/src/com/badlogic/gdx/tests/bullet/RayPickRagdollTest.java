@@ -88,7 +88,7 @@ public class RayPickRagdollTest extends BaseBulletTest {
 	}
 
 	@Override
-	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+	public boolean touchDown (int deviceId, int screenX, int screenY, int pointer, int button) {
 		boolean result = false;
 		if (button == Buttons.LEFT) {
 			Ray ray = camera.getPickRay(screenX, screenY);
@@ -122,7 +122,7 @@ public class RayPickRagdollTest extends BaseBulletTest {
 	}
 
 	@Override
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+	public boolean touchUp (int deviceId, int screenX, int screenY, int pointer, int button) {
 		boolean result = false;
 		if (button == Buttons.LEFT) {
 			if (pickConstraint != null) {
@@ -137,11 +137,11 @@ public class RayPickRagdollTest extends BaseBulletTest {
 				pickedBody = null;
 			}
 		}
-		return result ? result : super.touchUp(screenX, screenY, pointer, button);
+		return result ? result : super.touchUp(deviceId, screenX, screenY, pointer, button);
 	}
 
 	@Override
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int deviceId, int screenX, int screenY, int pointer) {
 		boolean result = false;
 		if (pickConstraint != null) {
 			Ray ray = camera.getPickRay(screenX, screenY);
@@ -149,7 +149,7 @@ public class RayPickRagdollTest extends BaseBulletTest {
 			pickConstraint.setPivotB(tmpV1);
 			result = true;
 		}
-		return result ? result : super.touchDragged(screenX, screenY, pointer);
+		return result ? result : super.touchDragged(deviceId, screenX, screenY, pointer);
 	}
 
 	@Override

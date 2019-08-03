@@ -830,4 +830,7 @@ public interface Input {
 
 	/** @return array of IDs for all connected devices. Android only. */
 	public int[] getDeviceIDs();
+
+	/** @return if the device is a mouse. Android only. */
+	public boolean getIsMouse (int deviceID);
 }

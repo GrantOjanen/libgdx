@@ -72,32 +72,32 @@ public class InputTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
-		Gdx.app.log("Input Test", "touch down: " + x + ", " + y + ", button: " + getButtonString(button));
+	public boolean touchDown (int deviceID, int x, int y, int pointer, int button) {
+		Gdx.app.log("Input Test", "touch down: " + x + ", " + y + ", deviceID: " + deviceID + ", isMouse: " + Gdx.input.getIsMouse(deviceID) + ", button: " + getButtonString(button));
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
-		Gdx.app.log("Input Test", "touch dragged: " + x + ", " + y + ", pointer: " + pointer);
+	public boolean touchDragged (int deviceID, int x, int y, int pointer) {
+		Gdx.app.log("Input Test", "touch dragged: " + x + ", " + y + ", deviceID: " + deviceID + ", isMouse: " + Gdx.input.getIsMouse(deviceID) + ", pointer: " + pointer);
 		return false;
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
-		Gdx.app.log("Input Test", "touch up: " + x + ", " + y + ", button: " + getButtonString(button));
+	public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
+		Gdx.app.log("Input Test", "touch up: " + x + ", " + y + ", deviceID: " + deviceID + ", isMouse: " + Gdx.input.getIsMouse(deviceID) + ", button: " + getButtonString(button));
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
-		Gdx.app.log("Input Test", "touch moved: " + x + ", " + y);
+	public boolean mouseMoved (int deviceID, int x, int y) {
+		Gdx.app.log("Input Test", "touch moved: " + x + ", " + y + ", deviceID: " + deviceID + ", isMouse: " + Gdx.input.getIsMouse(deviceID));
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
-		Gdx.app.log("Input Test", "scrolled: " + amount);
+	public boolean scrolled (int deviceID, int amount) {
+		Gdx.app.log("Input Test", "scrolled: " + amount + ", deviceID: " + deviceID + ", isMouse: " + Gdx.input.getIsMouse(deviceID));
 		return false;
 	}
 

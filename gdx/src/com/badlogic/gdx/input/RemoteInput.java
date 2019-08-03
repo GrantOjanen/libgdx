@@ -99,20 +99,20 @@ public class RemoteInput implements Runnable, Input {
 					case TouchEvent.TOUCH_DOWN:
 						deltaX[touchEvent.pointer] = 0;
 						deltaY[touchEvent.pointer] = 0;
-						processor.touchDown(touchEvent.x, touchEvent.y, touchEvent.pointer, Input.Buttons.LEFT);
+						processor.touchDown(-999, touchEvent.x, touchEvent.y, touchEvent.pointer, Input.Buttons.LEFT);
 						isTouched[touchEvent.pointer] = true;
 						justTouched = true;
 						break;
 					case TouchEvent.TOUCH_UP:
 						deltaX[touchEvent.pointer] = 0;
 						deltaY[touchEvent.pointer] = 0;
-						processor.touchUp(touchEvent.x, touchEvent.y, touchEvent.pointer, Input.Buttons.LEFT);
+						processor.touchUp(-999, touchEvent.x, touchEvent.y, touchEvent.pointer, Input.Buttons.LEFT);
 						isTouched[touchEvent.pointer] = false;
 						break;
 					case TouchEvent.TOUCH_DRAGGED:
 						deltaX[touchEvent.pointer] = touchEvent.x - touchX[touchEvent.pointer];
 						deltaY[touchEvent.pointer] = touchEvent.y - touchY[touchEvent.pointer];
-						processor.touchDragged(touchEvent.x, touchEvent.y, touchEvent.pointer);
+						processor.touchDragged(-999, touchEvent.x, touchEvent.y, touchEvent.pointer);
 						break;
 					}
 					touchX[touchEvent.pointer] = touchEvent.x;
@@ -593,6 +593,10 @@ public class RemoteInput implements Runnable, Input {
 	}
 
 	@Override
+	public boolean getIsMouse(int deviceID) {
+		return false;
+	}
+
 	public long getCurrentEventTime () {
 		// TODO Auto-generated method stub
 		return 0;

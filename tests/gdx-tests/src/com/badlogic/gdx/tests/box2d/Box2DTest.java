@@ -171,7 +171,7 @@ public abstract class Box2DTest implements ApplicationListener, InputProcessor {
 	};
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int deviceID, int x, int y, int pointer, int button) {
 		// translate the mouse coordinates to world coordinates
 		camera.unproject(testPoint.set(x, y, 0));
 		// ask the world which bodies are within the given
@@ -205,7 +205,7 @@ public abstract class Box2DTest implements ApplicationListener, InputProcessor {
 	Vector2 target = new Vector2();
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int deviceID, int x, int y, int pointer) {
 		// if a mouse joint exists we simply update
 		// the target of the joint based on the new
 		// mouse coordinates
@@ -217,7 +217,7 @@ public abstract class Box2DTest implements ApplicationListener, InputProcessor {
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceID, int x, int y, int pointer, int button) {
 		// if a mouse joint exists we simply destroy it
 		if (mouseJoint != null) {
 			world.destroyJoint(mouseJoint);
@@ -227,12 +227,12 @@ public abstract class Box2DTest implements ApplicationListener, InputProcessor {
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
+	public boolean mouseMoved (int deviceID, int x, int y) {
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceID, int amount) {
 		return false;
 	}
 

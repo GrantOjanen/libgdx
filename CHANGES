@@ -4,6 +4,7 @@
 - isFullscreen() now returns false when in multi-window mode on Android
 - API Addition: Allow changing the cursor on Android
 - API Addition: Added ability to work with multiple keyboards separately on Android
+- API Addition: added ability to check between mice and touchscreens on Android
 [1.9.10]
 - API Addition: Allow target display for maximization LWJGL3 backend
 - API Addition: Accelerometer support on GWT

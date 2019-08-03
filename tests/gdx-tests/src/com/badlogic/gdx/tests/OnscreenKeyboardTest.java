@@ -70,30 +70,30 @@ public class OnscreenKeyboardTest extends GdxTest implements InputProcessor {
 	}
 
 	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
+	public boolean touchDown (int deviceId, int x, int y, int pointer, int button) {
 		return false;
 	}
 
 	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
+	public boolean touchUp (int deviceId, int x, int y, int pointer, int button) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
+	public boolean touchDragged (int deviceId, int x, int y, int pointer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean mouseMoved (int x, int y) {
+	public boolean mouseMoved (int deviceId, int x, int y) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean scrolled (int amount) {
+	public boolean scrolled (int deviceId, int amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}

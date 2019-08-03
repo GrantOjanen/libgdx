@@ -648,6 +648,11 @@ public class IOSInput implements Input {
 		return new int[0];
 	}
 
+	@Override
+	public boolean getIsMouse(int deviceID) {
+		return false;
+	}
+
 	protected void onTouch (long touches) {
 		toTouchEvents(touches);
 		Gdx.graphics.requestRendering();
@@ -660,16 +665,16 @@ public class IOSInput implements Input {
 				currentEventTimeStamp = event.timestamp;
 				switch (event.phase) {
 				case Began:
-					if (inputProcessor != null) inputProcessor.touchDown(event.x, event.y, event.pointer, Buttons.LEFT);
+					if (inputProcessor != null) inputProcessor.touchDown(-999, event.x, event.y, event.pointer, Buttons.LEFT);
 					if (numTouched >= 1) justTouched = true;
 					break;
 				case Cancelled:
 				case Ended:
-					if (inputProcessor != null) inputProcessor.touchUp(event.x, event.y, event.pointer, Buttons.LEFT);
+					if (inputProcessor != null) inputProcessor.touchUp(-999, event.x, event.y, event.pointer, Buttons.LEFT);
 					break;
 				case Moved:
 				case Stationary:
-					if (inputProcessor != null) inputProcessor.touchDragged(event.x, event.y, event.pointer);
+					if (inputProcessor != null) inputProcessor.touchDragged(-999, event.x, event.y, event.pointer);
 					break;
 				}
 			}

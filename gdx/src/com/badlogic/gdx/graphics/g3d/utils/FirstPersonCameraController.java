@@ -67,7 +67,7 @@ public class FirstPersonCameraController extends InputAdapter {
 	}
 
 	@Override
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
+	public boolean touchDragged (int device, int screenX, int screenY, int pointer) {
 		float deltaX = -Gdx.input.getDeltaX() * degreesPerPixel;
 		float deltaY = -Gdx.input.getDeltaY() * degreesPerPixel;
 		camera.direction.rotate(camera.up, deltaX);

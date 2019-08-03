@@ -21,6 +21,7 @@ These are the goals for this fork. I wont send pull requests for all of them. Ea
 - [ ] open/save files with Storage Access Framework (Android)
 - [ ] hide cursor without capturing it
 - [ ] add way to get array of supported buttons/axes for controllers
+- [ ] try out [gdx-controllerutils](https://github.com/MrStahlfelge/gdx-controllerutils)
 
 ### Canceled Fork Goals
 - get gamepad vendor id and product id

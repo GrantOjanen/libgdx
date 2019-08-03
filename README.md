@@ -8,7 +8,7 @@ These are the goals for this fork. I wont send pull requests for all of them. Ea
 - [X] Change Mouse Cursor Image (Android 7+) Branch: [android-cursor](https://github.com/GrantOjanen/libgdx/tree/android-cursor)
 - [ ] Capture Mouse Pointer (Android 8+)
 - [ ] Ability to get button clicks and precise motion events from separate mice at the same time. (Android)
-- [ ] Ability to distinguish between mice and touch events. (Android)
+- [X] Ability to distinguish between mice and touch events. (Android) Branch: [android-improved-mice](https://github.com/GrantOjanen/libgdx/tree/android-improved-mice)
 - [ ] Change onPause to onStop to better support multi window mode (Android)
 - [X] add check for fullscreen (Android) Branch: [android-is-fullscreen](https://github.com/GrantOjanen/libgdx/tree/android-is-fullscreen)
 - [X] Android gamepad vibrations. Branch: [android-gamepad-vibration](https://github.com/GrantOjanen/libgdx/tree/android-gamepad-vibration)
@@ -19,6 +19,8 @@ These are the goals for this fork. I wont send pull requests for all of them. Ea
 - [ ] javascript send Gdx.app.log to console.log()
 - [ ] get rid of isMobileDevice, OUYA mapping, xperia play mapping, ...
 - [ ] open/save files with Storage Access Framework (Android)
+- [ ] hide cursor without capturing it
+- [ ] add way to get array of supported buttons/axes for controllers
 
 ### Canceled Fork Goals
 - get gamepad vendor id and product id
